@@ -14,6 +14,10 @@
 		358EE1D61D773E77001C188A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358EE1D41D773E77001C188A /* LaunchScreen.storyboard */; };
 		358EE1E11D773E77001C188A /* KinematicsSolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE1E01D773E77001C188A /* KinematicsSolverTests.swift */; };
 		358EE1EC1D773E77001C188A /* KinematicsSolverUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE1EB1D773E77001C188A /* KinematicsSolverUITests.swift */; };
+		358EE1FA1D775073001C188A /* EquationOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE1F91D775073001C188A /* EquationOne.swift */; };
+		358EE1FD1D775F1B001C188A /* EquationTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE1FC1D775F1B001C188A /* EquationTwo.swift */; };
+		358EE1FF1D77604A001C188A /* EquationThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE1FE1D77604A001C188A /* EquationThree.swift */; };
+		358EE2011D7761E7001C188A /* EquationFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE2001D7761E7001C188A /* EquationFour.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		358EE1E71D773E77001C188A /* KinematicsSolverUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KinematicsSolverUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		358EE1EB1D773E77001C188A /* KinematicsSolverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinematicsSolverUITests.swift; sourceTree = "<group>"; };
 		358EE1ED1D773E77001C188A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		358EE1F91D775073001C188A /* EquationOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationOne.swift; sourceTree = "<group>"; };
+		358EE1FC1D775F1B001C188A /* EquationTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationTwo.swift; sourceTree = "<group>"; };
+		358EE1FE1D77604A001C188A /* EquationThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationThree.swift; sourceTree = "<group>"; };
+		358EE2001D7761E7001C188A /* EquationFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationFour.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,7 @@
 			children = (
 				358EE1CB1D773E77001C188A /* AppDelegate.swift */,
 				358EE1CD1D773E77001C188A /* ViewController.swift */,
+				358EE1FB1D775079001C188A /* Equations */,
 				358EE1CF1D773E77001C188A /* Main.storyboard */,
 				358EE1D21D773E77001C188A /* Assets.xcassets */,
 				358EE1D41D773E77001C188A /* LaunchScreen.storyboard */,
@@ -123,6 +132,17 @@
 				358EE1ED1D773E77001C188A /* Info.plist */,
 			);
 			path = KinematicsSolverUITests;
+			sourceTree = "<group>";
+		};
+		358EE1FB1D775079001C188A /* Equations */ = {
+			isa = PBXGroup;
+			children = (
+				358EE1F91D775073001C188A /* EquationOne.swift */,
+				358EE1FC1D775F1B001C188A /* EquationTwo.swift */,
+				358EE1FE1D77604A001C188A /* EquationThree.swift */,
+				358EE2001D7761E7001C188A /* EquationFour.swift */,
+			);
+			name = Equations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,8 +276,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				358EE1FD1D775F1B001C188A /* EquationTwo.swift in Sources */,
+				358EE2011D7761E7001C188A /* EquationFour.swift in Sources */,
 				358EE1CE1D773E77001C188A /* ViewController.swift in Sources */,
 				358EE1CC1D773E77001C188A /* AppDelegate.swift in Sources */,
+				358EE1FA1D775073001C188A /* EquationOne.swift in Sources */,
+				358EE1FF1D77604A001C188A /* EquationThree.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,10 +423,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = KinematicsSolver/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Kahlil.KinematicsSolver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -410,10 +438,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = KinematicsSolver/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Kahlil.KinematicsSolver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
