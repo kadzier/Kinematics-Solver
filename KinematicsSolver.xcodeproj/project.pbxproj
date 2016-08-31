@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		358EE1CC1D773E77001C188A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE1CB1D773E77001C188A /* AppDelegate.swift */; };
+		358EE1CE1D773E77001C188A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE1CD1D773E77001C188A /* ViewController.swift */; };
+		358EE1D11D773E77001C188A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358EE1CF1D773E77001C188A /* Main.storyboard */; };
+		358EE1D31D773E77001C188A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 358EE1D21D773E77001C188A /* Assets.xcassets */; };
+		358EE1D61D773E77001C188A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358EE1D41D773E77001C188A /* LaunchScreen.storyboard */; };
+		358EE1E11D773E77001C188A /* KinematicsSolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE1E01D773E77001C188A /* KinematicsSolverTests.swift */; };
+		358EE1EC1D773E77001C188A /* KinematicsSolverUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE1EB1D773E77001C188A /* KinematicsSolverUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		358EE1DD1D773E77001C188A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 358EE1C01D773E77001C188A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 358EE1C71D773E77001C188A;
+			remoteInfo = KinematicsSolver;
+		};
+		358EE1E81D773E77001C188A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 358EE1C01D773E77001C188A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 358EE1C71D773E77001C188A;
+			remoteInfo = KinematicsSolver;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		358EE1C81D773E77001C188A /* KinematicsSolver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KinematicsSolver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		358EE1CB1D773E77001C188A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		358EE1CD1D773E77001C188A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		358EE1D01D773E77001C188A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		358EE1D21D773E77001C188A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		358EE1D51D773E77001C188A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		358EE1D71D773E77001C188A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		358EE1DC1D773E77001C188A /* KinematicsSolverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KinematicsSolverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		358EE1E01D773E77001C188A /* KinematicsSolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinematicsSolverTests.swift; sourceTree = "<group>"; };
+		358EE1E21D773E77001C188A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		358EE1E71D773E77001C188A /* KinematicsSolverUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KinematicsSolverUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		358EE1EB1D773E77001C188A /* KinematicsSolverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinematicsSolverUITests.swift; sourceTree = "<group>"; };
+		358EE1ED1D773E77001C188A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		358EE1C51D773E77001C188A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		358EE1D91D773E77001C188A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		358EE1E41D773E77001C188A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		358EE1BF1D773E77001C188A = {
+			isa = PBXGroup;
+			children = (
+				358EE1CA1D773E77001C188A /* KinematicsSolver */,
+				358EE1DF1D773E77001C188A /* KinematicsSolverTests */,
+				358EE1EA1D773E77001C188A /* KinematicsSolverUITests */,
+				358EE1C91D773E77001C188A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		358EE1C91D773E77001C188A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				358EE1C81D773E77001C188A /* KinematicsSolver.app */,
+				358EE1DC1D773E77001C188A /* KinematicsSolverTests.xctest */,
+				358EE1E71D773E77001C188A /* KinematicsSolverUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		358EE1CA1D773E77001C188A /* KinematicsSolver */ = {
+			isa = PBXGroup;
+			children = (
+				358EE1CB1D773E77001C188A /* AppDelegate.swift */,
+				358EE1CD1D773E77001C188A /* ViewController.swift */,
+				358EE1CF1D773E77001C188A /* Main.storyboard */,
+				358EE1D21D773E77001C188A /* Assets.xcassets */,
+				358EE1D41D773E77001C188A /* LaunchScreen.storyboard */,
+				358EE1D71D773E77001C188A /* Info.plist */,
+			);
+			path = KinematicsSolver;
+			sourceTree = "<group>";
+		};
+		358EE1DF1D773E77001C188A /* KinematicsSolverTests */ = {
+			isa = PBXGroup;
+			children = (
+				358EE1E01D773E77001C188A /* KinematicsSolverTests.swift */,
+				358EE1E21D773E77001C188A /* Info.plist */,
+			);
+			path = KinematicsSolverTests;
+			sourceTree = "<group>";
+		};
+		358EE1EA1D773E77001C188A /* KinematicsSolverUITests */ = {
+			isa = PBXGroup;
+			children = (
+				358EE1EB1D773E77001C188A /* KinematicsSolverUITests.swift */,
+				358EE1ED1D773E77001C188A /* Info.plist */,
+			);
+			path = KinematicsSolverUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		358EE1C71D773E77001C188A /* KinematicsSolver */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 358EE1F01D773E77001C188A /* Build configuration list for PBXNativeTarget "KinematicsSolver" */;
+			buildPhases = (
+				358EE1C41D773E77001C188A /* Sources */,
+				358EE1C51D773E77001C188A /* Frameworks */,
+				358EE1C61D773E77001C188A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KinematicsSolver;
+			productName = KinematicsSolver;
+			productReference = 358EE1C81D773E77001C188A /* KinematicsSolver.app */;
+			productType = "com.apple.product-type.application";
+		};
+		358EE1DB1D773E77001C188A /* KinematicsSolverTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 358EE1F31D773E77001C188A /* Build configuration list for PBXNativeTarget "KinematicsSolverTests" */;
+			buildPhases = (
+				358EE1D81D773E77001C188A /* Sources */,
+				358EE1D91D773E77001C188A /* Frameworks */,
+				358EE1DA1D773E77001C188A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				358EE1DE1D773E77001C188A /* PBXTargetDependency */,
+			);
+			name = KinematicsSolverTests;
+			productName = KinematicsSolverTests;
+			productReference = 358EE1DC1D773E77001C188A /* KinematicsSolverTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		358EE1E61D773E77001C188A /* KinematicsSolverUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 358EE1F61D773E77001C188A /* Build configuration list for PBXNativeTarget "KinematicsSolverUITests" */;
+			buildPhases = (
+				358EE1E31D773E77001C188A /* Sources */,
+				358EE1E41D773E77001C188A /* Frameworks */,
+				358EE1E51D773E77001C188A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				358EE1E91D773E77001C188A /* PBXTargetDependency */,
+			);
+			name = KinematicsSolverUITests;
+			productName = KinematicsSolverUITests;
+			productReference = 358EE1E71D773E77001C188A /* KinematicsSolverUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		358EE1C01D773E77001C188A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Kahlil Dozier";
+				TargetAttributes = {
+					358EE1C71D773E77001C188A = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					358EE1DB1D773E77001C188A = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 358EE1C71D773E77001C188A;
+					};
+					358EE1E61D773E77001C188A = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 358EE1C71D773E77001C188A;
+					};
+				};
+			};
+			buildConfigurationList = 358EE1C31D773E77001C188A /* Build configuration list for PBXProject "KinematicsSolver" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 358EE1BF1D773E77001C188A;
+			productRefGroup = 358EE1C91D773E77001C188A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				358EE1C71D773E77001C188A /* KinematicsSolver */,
+				358EE1DB1D773E77001C188A /* KinematicsSolverTests */,
+				358EE1E61D773E77001C188A /* KinematicsSolverUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		358EE1C61D773E77001C188A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				358EE1D61D773E77001C188A /* LaunchScreen.storyboard in Resources */,
+				358EE1D31D773E77001C188A /* Assets.xcassets in Resources */,
+				358EE1D11D773E77001C188A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		358EE1DA1D773E77001C188A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		358EE1E51D773E77001C188A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		358EE1C41D773E77001C188A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				358EE1CE1D773E77001C188A /* ViewController.swift in Sources */,
+				358EE1CC1D773E77001C188A /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		358EE1D81D773E77001C188A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				358EE1E11D773E77001C188A /* KinematicsSolverTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		358EE1E31D773E77001C188A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				358EE1EC1D773E77001C188A /* KinematicsSolverUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		358EE1DE1D773E77001C188A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 358EE1C71D773E77001C188A /* KinematicsSolver */;
+			targetProxy = 358EE1DD1D773E77001C188A /* PBXContainerItemProxy */;
+		};
+		358EE1E91D773E77001C188A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 358EE1C71D773E77001C188A /* KinematicsSolver */;
+			targetProxy = 358EE1E81D773E77001C188A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		358EE1CF1D773E77001C188A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				358EE1D01D773E77001C188A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		358EE1D41D773E77001C188A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				358EE1D51D773E77001C188A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		358EE1EE1D773E77001C188A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		358EE1EF1D773E77001C188A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		358EE1F11D773E77001C188A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KinematicsSolver/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Kahlil.KinematicsSolver;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		358EE1F21D773E77001C188A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KinematicsSolver/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Kahlil.KinematicsSolver;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		358EE1F41D773E77001C188A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KinematicsSolverTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Kahlil.KinematicsSolverTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KinematicsSolver.app/KinematicsSolver";
+			};
+			name = Debug;
+		};
+		358EE1F51D773E77001C188A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KinematicsSolverTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Kahlil.KinematicsSolverTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KinematicsSolver.app/KinematicsSolver";
+			};
+			name = Release;
+		};
+		358EE1F71D773E77001C188A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KinematicsSolverUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Kahlil.KinematicsSolverUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = KinematicsSolver;
+			};
+			name = Debug;
+		};
+		358EE1F81D773E77001C188A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KinematicsSolverUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Kahlil.KinematicsSolverUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = KinematicsSolver;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		358EE1C31D773E77001C188A /* Build configuration list for PBXProject "KinematicsSolver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				358EE1EE1D773E77001C188A /* Debug */,
+				358EE1EF1D773E77001C188A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		358EE1F01D773E77001C188A /* Build configuration list for PBXNativeTarget "KinematicsSolver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				358EE1F11D773E77001C188A /* Debug */,
+				358EE1F21D773E77001C188A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		358EE1F31D773E77001C188A /* Build configuration list for PBXNativeTarget "KinematicsSolverTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				358EE1F41D773E77001C188A /* Debug */,
+				358EE1F51D773E77001C188A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		358EE1F61D773E77001C188A /* Build configuration list for PBXNativeTarget "KinematicsSolverUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				358EE1F71D773E77001C188A /* Debug */,
+				358EE1F81D773E77001C188A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 358EE1C01D773E77001C188A /* Project object */;
+}
