@@ -170,12 +170,25 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     @IBAction func changeUnitsPressed(sender: AnyObject) {
         let alertController = UIAlertController(title: nil, message: "Choose Units", preferredStyle: .ActionSheet)
         let siAction = UIAlertAction(title: "SI (meters, seconds)", style: .Default) { (action) in
-            
+            self.displacementLabel.text = "Displacement (m)"
+            self.initVelLabel.text = "Initial Velocity (m/s)"
+            self.finalVelLabel.text = "Final Velocity (m/s)"
+            self.accelLabel.text = "Acceleration (m/s\u{00B2})"
+            self.timeLabel.text = "Time (s)"
         }
         let eng1Action = UIAlertAction(title: "English (feet, seconds)", style: .Default) { (action) in
+            self.displacementLabel.text = "Displacement (ft)"
+            self.initVelLabel.text = "Initial Velocity (ft/s)"
+            self.finalVelLabel.text = "Final Velocity (ft/s)"
+            self.accelLabel.text = "Acceleration (ft/s\u{00B2})"
+            self.timeLabel.text = "Time (s)"
         }
         let eng2Action = UIAlertAction(title: "English (miles, hours)", style: .Default) { (action) in
-            
+            self.displacementLabel.text = "Displacement (mi)"
+            self.initVelLabel.text = "Initial Velocity (mi/hr)"
+            self.finalVelLabel.text = "Final Velocity (mi/hr)"
+            self.accelLabel.text = "Acceleration (mi/hr\u{00B2})"
+            self.timeLabel.text = "Time (hr)"
         }
         alertController.addAction(siAction)
         alertController.addAction(eng1Action)

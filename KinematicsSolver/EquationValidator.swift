@@ -186,7 +186,9 @@ class EquationValidator: NSObject {
             answerDict["vf"] = eqn3!.vf!
             answerDict["vf2"] = eqn3!.vf2!
             answerDict["t"] = eqn1!.t!
-            answerDict["t2"] = eqn1!.t2!
+            if eqn1!.t2 != nil{ //would be nil if equation simplifies to x =vt
+                answerDict["t2"] = eqn1!.t2!
+            }
         }
         
         //x, vi, t
