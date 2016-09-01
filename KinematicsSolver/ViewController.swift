@@ -22,6 +22,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     @IBOutlet weak var showFullA: UIButton!
     @IBOutlet weak var showFullT: UIButton!
     
+    //gradient for background
+    let gradientLayer = CAGradientLayer()
+    
     let maxChars = 16 //"cutoff" point for chars in text field
     
     //textual representation of the entered values- empty string if empty 
@@ -40,6 +43,16 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     //MARK: View lifecycle events
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //gradient background
+        gradientLayer.frame = self.view.bounds
+        let color0 = UIColor.whiteColor().CGColor as CGColorRef
+        let color1 = UIColor.groupTableViewBackgroundColor().CGColor as CGColorRef
+        let color2 = UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor as CGColorRef
+        gradientLayer.colors = [color0, color1, color2]
+        gradientLayer.locations = nil //spread evenly
+        self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
+        
         
         //dismiss keyboard on tap
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
@@ -199,7 +212,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     //callbacks for when the text in the text field changes while editing
     @IBAction func xTextChanged(sender: UITextField) {
         xVal = sender.text!
-        print(sender.text!.characters.count)
     }
     @IBAction func viTextChanged(sender: UITextField) {
         viVal = sender.text!
@@ -276,6 +288,25 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     func roundToThreePlaces(num: Double) -> Double{
         return Double(round(1000*num)/1000)
     }
+    
+    //showing full values
+    @IBAction func showFullXPressed(sender: AnyObject) {
+        self.presentAlertWithMessage(title: "Displacement", message: xTextField.text!)
+    }
+    @IBAction func showFullViPressed(sender: AnyObject) {
+        self.presentAlertWithMessage(title: "Initial Velocity", message: viTextField.text!)
+    }
+    @IBAction func showFullVfPressed(sender: AnyObject) {
+        self.presentAlertWithMessage(title: "Final Velocity", message: vfTextField.text!)
+    }
+    @IBAction func showFullAPressed(sender: AnyObject) {
+        self.presentAlertWithMessage(title: "Acceleration", message: aTextField.text!)
+    }
+    @IBAction func showFullTPressed(sender: AnyObject) {
+        self.presentAlertWithMessage(title: "Time", message: tTextField.text!)
+    }
+    
+    
     //we're resetting the text fields and values
     func resetValues(){
         xVal = ""
