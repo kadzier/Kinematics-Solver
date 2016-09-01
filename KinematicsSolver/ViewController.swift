@@ -82,7 +82,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
             }
             //must have exactly 3 values to solve
             if valuesDict.count == 3{
-                EquationValidator.validateEquation(valuesDict)
+                let validString = EquationValidator.validateEquation(valuesDict)
+                print(validString)
             }
         }
         //need to reset
