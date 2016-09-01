@@ -85,15 +85,15 @@ class EquationValidator: NSObject {
             }
         }
         
-        //equation 2 invalid a
+        //equation 2- invalid a.  OK if vi = vf; because then equation will just return a = 0.
         else if variableSet.contains("vi") && variableSet.contains("vf") && variableSet.contains("t"){
-            //t = 0 - infinite acceleration required
-            if dict["t"] == 0{
+            //t = 0 and vi =/= vf infinite acceleration required
+            if dict["t"] == 0 && (dict["vi"] != dict["vf"]){
                 return "Undefined solution!  Acceleration must be infinite in magnitude to satisfy the constraints."
             }
         }
         
-        //equaiton 2 invalid t
+        //equaiton 2 or 3- invalid t or x
         else if variableSet.contains("vi") && variableSet.contains("vf") && variableSet.contains("a"){
             //a = 0 - either impossible situation or vf = vi
             if dict["a"] == 0{
@@ -102,6 +102,24 @@ class EquationValidator: NSObject {
                 }
                 else{
                     return "Invalid solution!  Because acceleration = 0, velocity is not changing and this describes a non-physical situation.  Consider re-checking your assumptions!"
+                }
+            }
+        }
+        
+        //equation 3 or 4- invalid a or t
+        else if variableSet.contains("x") && variableSet.contains("vi") && variableSet.contains("vf"){
+            //x = 0 - either impossible situation or vi = vf (then a = 0)
+            if dict["x"] == 0{
+                if !(dict["vi"] == dict["vf"]){
+                    return "Undefined solution!  Acceleration must be infinite in magnitude to satisfy these constraints."
+                }
+            }
+            else if dict["vi"]! == -dict["vf"]!{ //vi = -vf- either x = 0 or t must be infinite
+                if dict["x"] == 0{
+                    return "Ambiguous solution!  Because vi = -vf and x = 0, time can be any value."
+                }
+                else{
+                    return "Undefined solution!  Time must be infinite in magnitude to satisfy the constraints."
                 }
             }
         }

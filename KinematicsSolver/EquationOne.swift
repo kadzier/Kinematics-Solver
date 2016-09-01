@@ -49,9 +49,11 @@ class EquationOne: NSObject {
                 if a! == 0{ //no acceleration; just use x = vt (validator already checks for if both a and vi are zero)
                     t = x! / vi!
                 }
+                else{
+                    t = -vi!/a! + sqrt( (4*vi!*vi!)/(a!*a!) + 8*x!/a! ) / 2.0
+                    t2 = -vi!/a! - sqrt( (4*vi!*vi!)/(a!*a!) + 8*x!/a! ) / 2.0
+                }
                 
-                t = -vi!/a! + sqrt( (4*vi!*vi!)/(a!*a!) + 8*x!/a! ) / 2.0
-                t2 = -vi!/a! - sqrt( (4*vi!*vi!)/(a!*a!) + 8*x!/a! ) / 2.0
             }
             
         }

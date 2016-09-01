@@ -40,7 +40,12 @@ class EquationTwo: NSObject {
                 vf = vi! + a!*t!
             }
             else if !variableSet.contains("a"){ //we're solving for a
-                a = (vf! - vi!)/t!
+                if vi! == vf!{
+                    a = 0
+                }
+                else{
+                    a = (vf! - vi!)/t!
+                }
             }
             else if !variableSet.contains("t"){ //we're solving for t
                 t = (vf! - vi!)/a!

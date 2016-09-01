@@ -47,7 +47,12 @@ class EquationThree: NSObject {
                 vf2 = -sqrt( vi!*vi! + 2*a!*x! )
             }
             else if !variableSet.contains("a"){ //we're solving for a
-                a = (vf!*vf! - vi!*vi!) / (2*x!)
+                if vi! == vf!{
+                    a = 0
+                }
+                else{
+                    a = (vf!*vf! - vi!*vi!) / (2*x!)
+                }
             }
             
         }
