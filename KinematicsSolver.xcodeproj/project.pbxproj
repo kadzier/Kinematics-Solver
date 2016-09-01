@@ -518,6 +518,7 @@
 				358EE1F21D773E77001C188A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		358EE1F31D773E77001C188A /* Build configuration list for PBXNativeTarget "KinematicsSolverTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +527,7 @@
 				358EE1F51D773E77001C188A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		358EE1F61D773E77001C188A /* Build configuration list for PBXNativeTarget "KinematicsSolverUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +536,7 @@
 				358EE1F81D773E77001C188A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

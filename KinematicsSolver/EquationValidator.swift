@@ -174,6 +174,7 @@ class EquationValidator: NSObject {
         //x, vi, vf
         //use 3, 4 to solve for a, t
         if variableSet.containsStrings(["x", "vi", "vf"]){
+            print("using equations 3, 4...")
             answerDict["a"] = eqn3!.a!
             answerDict["t"] = eqn4!.t!
         }
@@ -181,6 +182,7 @@ class EquationValidator: NSObject {
         //x, vi, a
         //use 3, 1 to solve for vf, t
         else if variableSet.containsStrings(["x", "vi", "a"]){
+            print("using equations 3, 1...")
             answerDict["vf"] = eqn3!.vf!
             answerDict["vf2"] = eqn3!.vf2!
             answerDict["t"] = eqn1!.t!
@@ -190,6 +192,7 @@ class EquationValidator: NSObject {
         //x, vi, t
         //use 4, 1 to solve for vf, a
         else if variableSet.containsStrings(["x", "vi", "t"]){
+            print("using equations 4, 1...")
             answerDict["vf"] = eqn4!.vf!
             answerDict["a"] = eqn1!.t!
         }
@@ -197,6 +200,7 @@ class EquationValidator: NSObject {
         //x, vf, a
         //use 3 to solve for vi
         else if variableSet.containsStrings(["x", "vf", "a"]){
+            print("using equation 3...")
             answerDict["vi"] = eqn3!.vi!
             answerDict["vi2"] = eqn3!.vi2!
         }
@@ -204,18 +208,21 @@ class EquationValidator: NSObject {
         //x, vf, t
         //use 4 to solve for vi
         else if variableSet.containsStrings(["x", "vf", "t"]){
+            print("using equation 4...")
             answerDict["vi"] = eqn4!.vi!
         }
         
         //x, a, t
         //use 1 to solve for vi
         else if variableSet.containsStrings(["x", "a", "t"]){
+            print("using equation 1...")
             answerDict["vi"] = eqn1!.vi!
         }
         
         //vi, vf, a
         //use 3 and 2 to solve for x and t
         else if variableSet.containsStrings(["vi", "vf", "a"]){
+            print("using equations 3, 2...")
             answerDict["x"] = eqn3!.x!
             answerDict["t"] = eqn2!.t!
         }
@@ -223,6 +230,7 @@ class EquationValidator: NSObject {
         //vi, vf, t
         //use 4 and 2 to solve for x and a
         else if variableSet.containsStrings(["vi", "vf", "t"]){
+            print("using equations 4, 2...")
             answerDict["x"] = eqn4!.x!
             answerDict["a"] = eqn2!.a!
         }
@@ -230,6 +238,7 @@ class EquationValidator: NSObject {
         //vi, a, t
         //use 1 and 2 to solve for x and vf
         else if variableSet.containsStrings(["vi", "a", "t"]){
+            print("using equations 1, 2...")
             answerDict["x"] = eqn1!.x!
             answerDict["vf"] = eqn2!.a!
         }
@@ -237,6 +246,7 @@ class EquationValidator: NSObject {
         //vf, a, t
         //use 2 to solve for vi
         else if variableSet.containsStrings(["vf", "a", "t"]){
+            print("using equation 2...")
             answerDict["vi"] = eqn2!.vi!
         }
         

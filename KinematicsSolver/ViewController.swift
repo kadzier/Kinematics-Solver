@@ -16,6 +16,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     @IBOutlet weak var aTextField: UITextField!
     @IBOutlet weak var tTextField: UITextField!
     
+    @IBOutlet weak var showFullX: UIButton!
+    @IBOutlet weak var showFullVi: UIButton!
+    @IBOutlet weak var showFullVf: UIButton!
+    @IBOutlet weak var showFullA: UIButton!
+    @IBOutlet weak var showFullT: UIButton!
+    
+    let maxChars = 16 //"cutoff" point for chars in text field
+    
     //textual representation of the entered values- empty string if empty 
     var xVal = ""
     var viVal = ""
@@ -25,6 +33,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     
     //solve/reset state.  Default is false; have not yet solved
     var solved: Bool = false
+    
+    //show work button
+    @IBOutlet weak var showWorkButton: UIButton!
     
     //MARK: View lifecycle events
     override func viewDidLoad() {
@@ -41,6 +52,16 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         vfTextField.delegate = self
         aTextField.delegate = self
         tTextField.delegate = self
+        
+        //show full buttons
+        self.showFullX.hidden = true
+        self.showFullVi.hidden = true
+        self.showFullVf.hidden = true
+        self.showFullA.hidden = true
+        self.showFullT.hidden = true
+        
+        //show work button
+        self.showWorkButton.hidden = true
         
     }
 
@@ -64,6 +85,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     //MARK: Solve/Reset
     
     @IBAction func solveResetPressed(sender: AnyObject) {
+        
+        let button = sender as! UIButton
         
         //need to solve
         if !solved{
@@ -99,7 +122,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
                     self.presentAlertWithMessage(title: "Error", message: validString)
                 }
                 else{ //we have a valid solution! Time to solve
-                    EquationValidator.solveForUnknowns(valuesDict)
+                    solved = true
+                    button.setTitle("Reset", forState: .Normal)
+                    self.showWorkButton.hidden = false
+                    let solutionValues = EquationValidator.solveForUnknowns(valuesDict)
+                    self.fillInValues(solutionValues)
                 }
             }
             else{
@@ -108,31 +135,44 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         }
         //need to reset
         else{
-            
+            solved = false
+            button.setTitle("Solve!", forState: .Normal)
+            self.showWorkButton.hidden = true
+            self.resetValues()
         }
     }
 
+    //MARK: Show work
     
+    @IBAction func showWorkPressed(sender: AnyObject) {
+    }
     
     //MARK: Text field delegate
+    //we want to disable editing if we're in the "reset" state
     //we want to disable editing if 3 fields are already filled and we're trying to edit the fourth and beyond
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        var emptyCount = 0
-        let valuesArray: [String] = [xVal,viVal,vfVal,aVal,tVal]
-        for value in valuesArray{
-            if value.characters.count == 0{
-                emptyCount += 1
-            }
+        
+        if solved == true{
+            return false
         }
-        if emptyCount >= 3{ //still enough empty; editing is fine!
-            return true
-        }
-        else{ //we've already filled up 3; don't let us edit a new one!
-            if textField.text!.characters.count == 0{
-                return false
+        else{
+            var emptyCount = 0
+            let valuesArray: [String] = [xVal,viVal,vfVal,aVal,tVal]
+            for value in valuesArray{
+                if value.characters.count == 0{
+                    emptyCount += 1
+                }
             }
-            else{ //this is an old one we're trying to edit
+            if emptyCount >= 3{ //still enough empty; editing is fine!
                 return true
+            }
+            else{ //we've already filled up 3; don't let us edit a new one!
+                if textField.text!.characters.count == 0{
+                    return false
+                }
+                else{ //this is an old one we're trying to edit
+                    return true
+                }
             }
         }
     }
@@ -159,6 +199,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     //callbacks for when the text in the text field changes while editing
     @IBAction func xTextChanged(sender: UITextField) {
         xVal = sender.text!
+        print(sender.text!.characters.count)
     }
     @IBAction func viTextChanged(sender: UITextField) {
         viVal = sender.text!
@@ -173,7 +214,96 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         tVal = sender.text!
     }
     
-    
+    //when we've solved the equation, this fills in the text fields.  We also handle rounding here, as well as the "show full" buttons
+    func fillInValues(valuesDict: [String:Double]){
+        
+        //get rid of clear buttons
+        xTextField.clearButtonMode = .Never
+        viTextField.clearButtonMode = .Never
+        vfTextField.clearButtonMode = .Never
+        aTextField.clearButtonMode = .Never
+        tTextField.clearButtonMode = .Never
+        
+        if valuesDict["x"] != nil{
+            let x = roundToThreePlaces(valuesDict["x"]!)
+            xTextField.text = String(x)
+            if xTextField.text?.characters.count > maxChars{
+                showFullX.hidden = false
+            }
+        }
+        if valuesDict["vi"] != nil{
+            let vi = roundToThreePlaces(valuesDict["vi"]!)
+            viTextField.text = String(vi)
+            if valuesDict["vi2"] != nil{
+                let vi2 = roundToThreePlaces(valuesDict["vi2"]!)
+                viTextField.text = viTextField.text! + " or " + String(vi2)
+            }
+            if viTextField.text?.characters.count > maxChars{
+                showFullVi.hidden = false
+            }
+        }
+        if valuesDict["vf"] != nil{
+            let vf = roundToThreePlaces(valuesDict["vf"]!)
+            vfTextField.text = String(vf)
+            if valuesDict["vf2"] != nil{
+                let vf2 = roundToThreePlaces(valuesDict["vf2"]!)
+                vfTextField.text = vfTextField.text! + " or " + String(vf2)
+            }
+            if vfTextField.text?.characters.count > maxChars{
+                showFullVf.hidden = false
+            }
+        }
+        if valuesDict["a"] != nil{
+            let a = roundToThreePlaces(valuesDict["a"]!)
+            aTextField.text = String(a)
+            if aTextField.text?.characters.count > maxChars{
+                showFullA.hidden = false
+            }
+        }
+        if valuesDict["t"] != nil{
+            let t = roundToThreePlaces(valuesDict["t"]!)
+            tTextField.text = String(t)
+            if valuesDict["t2"] != nil{
+                let t2 = roundToThreePlaces(valuesDict["t2"]!)
+                tTextField.text = tTextField.text! + " or " + String(t2)
+            }
+            if tTextField.text?.characters.count > maxChars{
+                showFullT.hidden = false
+            }
+        }
+    }
+    //helper function to round to three places
+    func roundToThreePlaces(num: Double) -> Double{
+        return Double(round(1000*num)/1000)
+    }
+    //we're resetting the text fields and values
+    func resetValues(){
+        xVal = ""
+        viVal = ""
+        vfVal = ""
+        aVal = ""
+        tVal = ""
+        
+        xTextField.text = ""
+        viTextField.text = ""
+        vfTextField.text = ""
+        aTextField.text = ""
+        tTextField.text = ""
+        
+        //restore clear buttons
+        xTextField.clearButtonMode = .Always
+        viTextField.clearButtonMode = .Always
+        vfTextField.clearButtonMode = .Always
+        aTextField.clearButtonMode = .Always
+        tTextField.clearButtonMode = .Always
+        
+        //get rid of show full buttons
+        showFullX.hidden = true
+        showFullVi.hidden = true
+        showFullVf.hidden = true
+        showFullA.hidden = true
+        showFullT.hidden = true
+    }
     
 }
 
