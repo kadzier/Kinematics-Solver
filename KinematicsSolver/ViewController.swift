@@ -85,6 +85,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
                 let validString = EquationValidator.validateEquation(valuesDict)
                 print(validString)
             }
+            else{
+                print("please enter 3 valid values")
+            }
         }
         //need to reset
         else{
