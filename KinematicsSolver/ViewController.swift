@@ -26,6 +26,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     //solve/reset state.  Default is false; have not yet solved
     var solved: Bool = false
     
+    //MARK: View lifecycle events
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +50,15 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
 
     func dismissKeyboard() {
         self.view.endEditing(true)
+    }
+    
+    //MARK: Present alert controller with message
+    func presentAlertWithMessage(title title: String, message: String){
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { (action) in
+            
+        }))
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     //MARK: Solve/Reset
@@ -82,15 +92,23 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
             }
             //must have exactly 3 values to solve
             if valuesDict.count == 3{
+                
+                //validate inputs to see if we'll have a valid solution
                 let validString = EquationValidator.validateEquation(valuesDict)
-                print(validString)
+                if validString != "valid"{ //invalid solution, display specific error
+                    self.presentAlertWithMessage(title: "Error", message: validString)
+                }
+                else{ //we have a valid solution! Time to solve
+                    EquationValidator.solveForUnknowns(valuesDict)
+                }
             }
             else{
-                print("please enter 3 valid values")
+                self.presentAlertWithMessage(title: "Whoops!", message: "Please enter 3 valid values.")
             }
         }
         //need to reset
         else{
+            
         }
     }
 

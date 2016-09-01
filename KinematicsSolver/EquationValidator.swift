@@ -8,6 +8,19 @@
 
 import UIKit
 
+//Extension for Set that adds the capability to test membership for an array of strings 
+//Input is an array of Strings.  Returns true iff ALL strings in input are in set.
+extension Set{
+    func containsStrings(array: [String]) -> Bool{
+        for item in array{
+            if !self.contains(item as! Element){
+                return false
+            }
+        }
+        return true
+    }
+}
+
 //This class contains class functions to assist in validating equations 
 class EquationValidator: NSObject {
 
@@ -124,5 +137,107 @@ class EquationValidator: NSObject {
             }
         }
         return "valid"
+    }
+    
+    //Use the equation classes to solve for the unknowns 
+    //Input is a dictionary with exactly three key/value pairs where the keys are unique strings x, vi, vf, a, or t
+    //Output is another dictionary with key/value pairs for the remaining variables; the answers might have the keys vi2, vf2 or t2 for situations with multiple roots
+    class func solveForUnknowns(varsDict: [String:Double]) -> [String: Double] {
+        
+        let variables = varsDict.keys
+        let variableSet = Set(variables)
+        
+        var answerDict: [String: Double] = [:]
+        
+        var eqn1: EquationOne?
+        var eqn2: EquationTwo?
+        var eqn3: EquationThree?
+        var eqn4: EquationFour?
+        
+        //equation 1 is independent of vf
+        if !variableSet.contains("vf"){
+            eqn1 = EquationOne(givens: varsDict)
+        }
+        //equation 2 is independent of x
+        if !variableSet.contains("x"){
+            eqn2 = EquationTwo(givens: varsDict)
+        }
+        //equation 3 is independent of t
+        if !variableSet.contains("t"){
+            eqn3 = EquationThree(givens: varsDict)
+        }
+        //equation 4 is independent of a
+        if !variableSet.contains("a"){
+            eqn4 = EquationFour(givens: varsDict)
+        }
+        
+        //x, vi, vf
+        //use 3, 4 to solve for a, t
+        if variableSet.containsStrings(["x", "vi", "vf"]){
+            answerDict["a"] = eqn3!.a!
+            answerDict["t"] = eqn4!.t!
+        }
+        
+        //x, vi, a
+        //use 3, 1 to solve for vf, t
+        else if variableSet.containsStrings(["x", "vi", "a"]){
+            answerDict["vf"] = eqn3!.vf!
+            answerDict["t"] = eqn1!.t!
+        }
+        
+        //x, vi, t
+        //use 4, 1 to solve for vf, a
+        else if variableSet.containsStrings(["x", "vi", "t"]){
+            answerDict["vf"] = eqn4!.vf!
+            answerDict["a"] = eqn1!.t!
+        }
+        
+        //x, vf, a
+        //use 3 to solve for vi
+        else if variableSet.containsStrings(["x", "vf", "a"]){
+            answerDict["vi"] = eqn3!.vi!
+        }
+        
+        //x, vf, t
+        //use 4 to solve for vi
+        else if variableSet.containsStrings(["x", "vf", "t"]){
+            answerDict["vi"] = eqn4!.vi!
+        }
+        
+        //x, a, t
+        //use 1 to solve for vi
+        else if variableSet.containsStrings(["x", "a", "t"]){
+            answerDict["vi"] = eqn1!.vi!
+        }
+        
+        //vi, vf, a
+        //use 3 and 2 to solve for x and t
+        else if variableSet.containsStrings(["vi", "vf", "a"]){
+            answerDict["x"] = eqn3!.x!
+            answerDict["t"] = eqn2!.t!
+        }
+        
+        //vi, vf, t
+        //use 4 and 2 to solve for x and a
+        else if variableSet.containsStrings(["vi", "vf", "t"]){
+            answerDict["x"] = eqn4!.x!
+            answerDict["a"] = eqn2!.a!
+        }
+        
+        //vi, a, t
+        //use 1 and 2 to solve for x and vf
+        else if variableSet.containsStrings(["vi", "a", "t"]){
+            answerDict["x"] = eqn1!.x!
+            answerDict["vf"] = eqn2!.a!
+        }
+        
+        //vf, a, t
+        //use 2 to solve for vi
+        else if variableSet.containsStrings(["vf", "a", "t"]){
+            answerDict["vi"] = eqn2!.vi!
+        }
+        
+        print(answerDict)
+        return answerDict
     }
 }
