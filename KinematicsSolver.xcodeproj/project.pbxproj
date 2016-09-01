@@ -18,6 +18,7 @@
 		358EE1FD1D775F1B001C188A /* EquationTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE1FC1D775F1B001C188A /* EquationTwo.swift */; };
 		358EE1FF1D77604A001C188A /* EquationThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE1FE1D77604A001C188A /* EquationThree.swift */; };
 		358EE2011D7761E7001C188A /* EquationFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE2001D7761E7001C188A /* EquationFour.swift */; };
+		358EE2031D777BC8001C188A /* EquationValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE2021D777BC8001C188A /* EquationValidator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		358EE1FC1D775F1B001C188A /* EquationTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationTwo.swift; sourceTree = "<group>"; };
 		358EE1FE1D77604A001C188A /* EquationThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationThree.swift; sourceTree = "<group>"; };
 		358EE2001D7761E7001C188A /* EquationFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationFour.swift; sourceTree = "<group>"; };
+		358EE2021D777BC8001C188A /* EquationValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationValidator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 		358EE1FB1D775079001C188A /* Equations */ = {
 			isa = PBXGroup;
 			children = (
+				358EE2021D777BC8001C188A /* EquationValidator.swift */,
 				358EE1F91D775073001C188A /* EquationOne.swift */,
 				358EE1FC1D775F1B001C188A /* EquationTwo.swift */,
 				358EE1FE1D77604A001C188A /* EquationThree.swift */,
@@ -278,6 +281,7 @@
 			files = (
 				358EE1FD1D775F1B001C188A /* EquationTwo.swift in Sources */,
 				358EE2011D7761E7001C188A /* EquationFour.swift in Sources */,
+				358EE2031D777BC8001C188A /* EquationValidator.swift in Sources */,
 				358EE1CE1D773E77001C188A /* ViewController.swift in Sources */,
 				358EE1CC1D773E77001C188A /* AppDelegate.swift in Sources */,
 				358EE1FA1D775073001C188A /* EquationOne.swift in Sources */,

@@ -23,6 +23,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     var aVal = ""
     var tVal = ""
     
+    //solve/reset state.  Default is false; have not yet solved
+    var solved: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,8 +51,48 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         self.view.endEditing(true)
     }
     
-    //MARK: Text field delegate
+    //MARK: Solve/Reset
     
+    @IBAction func solveResetPressed(sender: AnyObject) {
+        
+        //need to solve
+        if !solved{
+            //build up our values dict.
+            var valuesDict: [String:Double] = [:]
+            var valsArray: [String] = [xVal, viVal, vfVal, aVal, tVal]
+            for i in 0..<valsArray.count{
+                let val = valsArray[i]
+                if val.characters.count > 0{
+                    if i == 0{ //x
+                        valuesDict["x"] = Double(xVal)
+                    }
+                    else if i == 1{ //vi
+                        valuesDict["vi"] = Double(viVal)
+                    }
+                    else if i == 2{ //vf
+                        valuesDict["vf"] = Double(vfVal)
+                    }
+                    else if i == 3{ //a
+                        valuesDict["a"] = Double(aVal)
+                    }
+                    else if i == 4{ //t
+                        valuesDict["t"] = Double(tVal)
+                    }
+                }
+            }
+            //must have exactly 3 values to solve
+            if valuesDict.count == 3{
+                EquationValidator.validateEquation(valuesDict)
+            }
+        }
+        //need to reset
+        else{
+        }
+    }
+
+    
+    
+    //MARK: Text field delegate
     //we want to disable editing if 3 fields are already filled and we're trying to edit the fourth and beyond
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         var emptyCount = 0
