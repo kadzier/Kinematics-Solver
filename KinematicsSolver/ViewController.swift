@@ -9,6 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextFieldDelegate {
+    @IBOutlet weak var displacementLabel: UILabel!
+    @IBOutlet weak var initVelLabel: UILabel!
+    @IBOutlet weak var finalVelLabel: UILabel!
+    @IBOutlet weak var accelLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
 
     @IBOutlet weak var xTextField: UITextField!
     @IBOutlet weak var viTextField: UITextField!
@@ -53,6 +58,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         gradientLayer.locations = nil //spread evenly
         self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
         
+        //superscript on acceleration
+        self.accelLabel.text = "Acceleration (m/s\u{00B2})"
         
         //dismiss keyboard on tap
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))

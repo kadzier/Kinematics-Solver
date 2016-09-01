@@ -194,7 +194,7 @@ class EquationValidator: NSObject {
         else if variableSet.containsStrings(["x", "vi", "t"]){
             print("using equations 4, 1...")
             answerDict["vf"] = eqn4!.vf!
-            answerDict["a"] = eqn1!.t!
+            answerDict["a"] = eqn1!.a!
         }
         
         //x, vf, a
@@ -240,7 +240,7 @@ class EquationValidator: NSObject {
         else if variableSet.containsStrings(["vi", "a", "t"]){
             print("using equations 1, 2...")
             answerDict["x"] = eqn1!.x!
-            answerDict["vf"] = eqn2!.a!
+            answerDict["vf"] = eqn2!.vf!
         }
         
         //vf, a, t

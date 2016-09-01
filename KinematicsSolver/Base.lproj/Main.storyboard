@@ -52,12 +52,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acceleration (m/s^2)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvX-rg-fiu">
-                                <rect key="frame" x="16" y="313" width="184" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time (s)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzA-mi-HOk">
                                 <rect key="frame" x="16" y="367" width="73" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -131,6 +125,14 @@
                                     <action selector="showFullXPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OaI-PZ-oCn"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDf-by-UjP">
+                                <rect key="frame" x="228" y="231" width="57" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="show full..."/>
+                                <connections>
+                                    <action selector="showFullViPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n90-NB-zTm"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2SB-b7-dEV">
                                 <rect key="frame" x="228" y="286" width="57" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -155,14 +157,12 @@
                                     <action selector="showFullTPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tDn-qJ-PYZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDf-by-UjP">
-                                <rect key="frame" x="228" y="231" width="57" height="26"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <state key="normal" title="show full..."/>
-                                <connections>
-                                    <action selector="showFullViPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n90-NB-zTm"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acceleration (m/s^2)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvX-rg-fiu">
+                                <rect key="frame" x="16" y="313" width="184" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -215,6 +215,10 @@
                     </view>
                     <connections>
                         <outlet property="aTextField" destination="FzA-ry-Ss6" id="JWM-1N-0zW"/>
+                        <outlet property="accelLabel" destination="hvX-rg-fiu" id="5TJ-f8-ajT"/>
+                        <outlet property="displacementLabel" destination="6D1-Af-0R6" id="ZK5-bE-pRX"/>
+                        <outlet property="finalVelLabel" destination="SB5-Ab-eCI" id="sVi-s1-rv1"/>
+                        <outlet property="initVelLabel" destination="1hu-D6-tUS" id="xia-q5-mPi"/>
                         <outlet property="showFullA" destination="bhS-bq-4gp" id="tsV-cC-tsP"/>
                         <outlet property="showFullT" destination="hry-dD-wyI" id="KiV-3d-BmZ"/>
                         <outlet property="showFullVf" destination="2SB-b7-dEV" id="yi1-jr-oca"/>
@@ -222,6 +226,7 @@
                         <outlet property="showFullX" destination="0pu-pm-434" id="lRa-Dg-aUu"/>
                         <outlet property="showWorkButton" destination="anI-gV-mtK" id="Ta5-0i-K4e"/>
                         <outlet property="tTextField" destination="0zb-88-ehV" id="KS7-YU-p4C"/>
+                        <outlet property="timeLabel" destination="zzA-mi-HOk" id="qEL-cw-Mu5"/>
                         <outlet property="vfTextField" destination="Uzg-9b-BnA" id="IFu-H9-aL9"/>
                         <outlet property="viTextField" destination="8eB-iK-sbz" id="dMt-jA-txv"/>
                         <outlet property="xTextField" destination="tz0-R8-pA2" id="YBb-ib-YjQ"/>
