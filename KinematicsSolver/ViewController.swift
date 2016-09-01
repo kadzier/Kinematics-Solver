@@ -90,7 +90,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
                     }
                 }
             }
-            //must have exactly 3 values to solve
+            //must have exactly 3 valid input values to solve
             if valuesDict.count == 3{
                 
                 //validate inputs to see if we'll have a valid solution
@@ -124,7 +124,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
                 emptyCount += 1
             }
         }
-        print(emptyCount)
         if emptyCount >= 3{ //still enough empty; editing is fine!
             return true
         }

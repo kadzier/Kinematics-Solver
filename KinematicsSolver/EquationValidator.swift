@@ -182,7 +182,9 @@ class EquationValidator: NSObject {
         //use 3, 1 to solve for vf, t
         else if variableSet.containsStrings(["x", "vi", "a"]){
             answerDict["vf"] = eqn3!.vf!
+            answerDict["vf2"] = eqn3!.vf2!
             answerDict["t"] = eqn1!.t!
+            answerDict["t2"] = eqn1!.t2!
         }
         
         //x, vi, t
@@ -196,6 +198,7 @@ class EquationValidator: NSObject {
         //use 3 to solve for vi
         else if variableSet.containsStrings(["x", "vf", "a"]){
             answerDict["vi"] = eqn3!.vi!
+            answerDict["vi2"] = eqn3!.vi2!
         }
         
         //x, vf, t
