@@ -45,6 +45,11 @@ class EquationOne: NSObject {
                 a = (2*x!)/(t!*t!) - 2*vi!/t!
             }
             else if !variableSet.contains("t"){ //we're solving for t
+                
+                if a! == 0{ //no acceleration; just use x = vt (validator already checks for if both a and vi are zero)
+                    t = x! / vi!
+                }
+                
                 t = -vi!/a! + sqrt( (4*vi!*vi!)/(a!*a!) + 8*x!/a! ) / 2.0
                 t2 = -vi!/a! - sqrt( (4*vi!*vi!)/(a!*a!) + 8*x!/a! ) / 2.0
             }

@@ -63,6 +63,25 @@ class EquationValidator: NSObject {
                 }
             }
         }
+        
+        //equation 1 both vi and a are 0 -- invalid t
+        else if variableSet.contains("x") && variableSet.contains("vi") && variableSet.contains("a"){
+            if dict["vi"] == 0 {
+                if dict["a"] == 0{
+                    return "Ambiguous solution! Because vi and a = 0; time must be infinite in magnitude to satisfy the constraints"
+                }
+            }
+        }
+        
+        //equation 2 invalid a
+        else if variableSet.contains("vi") && variableSet.contains("vf") && variableSet.contains("t"){
+            //t = 0- infinite acceleration required
+            if dict["t"] == 0{
+                return "Undefined solution!  Acceleration must be infinite in magnitude to satisfy the constraints."
+            }
+        }
+        
+        
         return "valid"
     }
 }
