@@ -22,11 +22,17 @@
                                 <rect key="frame" x="16" y="30" width="42" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Help"/>
+                                <connections>
+                                    <action selector="helpPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QAr-fv-CI2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wt-NY-De5">
                                 <rect key="frame" x="181" y="30" width="123" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Change Units"/>
+                                <connections>
+                                    <action selector="changeUnitsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KaE-pw-SXJ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter given values for 3 variables below. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sWB-nq-gpN">
                                 <rect key="frame" x="5" y="100" width="310" height="21"/>

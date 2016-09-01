@@ -26,9 +26,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     @IBOutlet weak var showFullVf: UIButton!
     @IBOutlet weak var showFullA: UIButton!
     @IBOutlet weak var showFullT: UIButton!
-    
-    //gradient for background
-    let gradientLayer = CAGradientLayer()
+        
     
     let maxChars = 16 //"cutoff" point for chars in text field
     
@@ -50,6 +48,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         super.viewDidLoad()
         
         //gradient background
+        let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
         let color0 = UIColor.whiteColor().CGColor as CGColorRef
         let color1 = UIColor.groupTableViewBackgroundColor().CGColor as CGColorRef
@@ -166,6 +165,28 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     
     @IBAction func showWorkPressed(sender: AnyObject) {
     }
+    
+    //MARK: Change units
+    @IBAction func changeUnitsPressed(sender: AnyObject) {
+        let alertController = UIAlertController(title: nil, message: "Choose Units", preferredStyle: .ActionSheet)
+        let siAction = UIAlertAction(title: "SI (meters, seconds)", style: .Default) { (action) in
+            
+        }
+        let eng1Action = UIAlertAction(title: "English (feet, seconds)", style: .Default) { (action) in
+        }
+        let eng2Action = UIAlertAction(title: "English (miles, hours)", style: .Default) { (action) in
+            
+        }
+        alertController.addAction(siAction)
+        alertController.addAction(eng1Action)
+        alertController.addAction(eng2Action)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    //MARK: Help
+    @IBAction func helpPressed(sender: AnyObject) {
+    }
+    
     
     //MARK: Text field delegate
     //we want to disable editing if we're in the "reset" state
