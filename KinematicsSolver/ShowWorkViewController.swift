@@ -11,6 +11,8 @@ import UIKit
 //This class is the view controller for the "show your work" section.
 class ShowWorkViewController: UIViewController {
 
+    @IBOutlet weak var initialLabel: UILabel!
+    
     //We will encode each of the 16 kinematics equations for a particular variable with a number.  The equationIndices array contains either 1 or 2 numbers, depending on the variables we solved for.
     
     //1-4: x = vi*t + 1/2*a*t^2
@@ -42,9 +44,41 @@ class ShowWorkViewController: UIViewController {
         super.viewDidLoad()
         self.modalTransitionStyle = .FlipHorizontal
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.displaySolutionLabels()
+    }
+    
+    func displaySolutionLabels(){
+        
+        //one-half in unicode: \u{00B9}\u{2044}\u{2082}
+        
+        //first equation
+        //3, 4, 6, 7, 8, 16 cannot currently be the first equation (always paired second with something else when object is created)
+        let equation1 = equationIndices[0]
+        //header label
+        var headerText = ""
+        switch equation1 {
+        case 1:
+            headerText = "We are given initial velocity, acceleration, and time.  To solve for displacement, we use the equation: \n"
+            headerText += "x = Vi*t + \u{00B9}\u{2044}\u{2082}*a*t\u{00B2}"
+        case 2:
+            headerText = "We are given displacement, acceleration, and time.  To solve for initial velocity, we start with the equation: \n"
+            headerText += "x = Vi*t + \u{00B9}\u{2044}\u{2082}*a*t\u{00B2}"
+            headerText += "\n Solving the equation for Vi, we end up with: \n"
+            headerText += "Vi = x\u{2044}t - \u{00B9}\u{2044}\u{2082}*a*t"
+        default:
+            return
+        }
+        self.initialLabel.text = headerText
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+    @IBAction func donePressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
