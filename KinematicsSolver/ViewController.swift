@@ -36,7 +36,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     //defaut to SI units
     var units: Units = .SI
     
-    let maxChars = 16 //"cutoff" point for chars in text field
+    let maxChars = 18 //"cutoff" point for chars in text field
     
     
     //textual representation of the entered values- empty string if empty 
@@ -94,6 +94,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         //show work button
         self.showWorkButton.hidden = true
         
+        //style of transitioning modally to self
+        self.modalTransitionStyle = .FlipHorizontal
     }
 
     override func didReceiveMemoryWarning() {
@@ -540,6 +542,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     
     //MARK: Help
     @IBAction func helpPressed(sender: AnyObject) {
+        let vc = HelpViewController(nibName: "HelpViewController", bundle: nil)
+        self.presentViewController(vc, animated: true, completion: nil)
     }
     
     
