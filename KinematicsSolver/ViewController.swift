@@ -9,9 +9,9 @@
 import UIKit
 
 enum Units{
-    case SI
-    case Eng1
-    case Eng2
+    case SI //meters, seconds
+    case Eng1 //feet, seconds
+    case Eng2 //miles, hours
 }
 
 class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextFieldDelegate {
@@ -214,6 +214,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+    //switch to meters, seconds
     func switchToSIUnits(){
         let currentUnits = self.units
         //if already SI, do nothing
@@ -257,14 +258,67 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         }
         //eng2 to SI
         else if currentUnits == .Eng2{
+            //miles to meters
+            let mileMeterFactor = 1609.344
+            //hours to seconds
+            let hourSecondFactor = 3600.0
+            //mi/hr to meters/sec
+            let ratioFactor = mileMeterFactor / hourSecondFactor
+            //mi/h^2 to m/sec^2
+            let ratioFactorSquared = mileMeterFactor / (hourSecondFactor * hourSecondFactor)
             
+            let valsArray = [xVal, viVal, vi2Val, vfVal, vf2Val, aVal, tVal, t2Val]
+            for stringValue in valsArray{
+                if stringValue != ""{
+                    var doubleValue = Double(stringValue)!
+                    let index = valsArray.indexOf(stringValue)!
+                    switch index{
+                    case 0:
+                        doubleValue *= mileMeterFactor
+                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        self.xVal = String(finalDoubleValue)
+                    case 1:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        self.viVal = String(finalDoubleValue)
+                    case 2:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        self.vi2Val = String(finalDoubleValue)
+                    case 3:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        self.vfVal = String(finalDoubleValue)
+                    case 4:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        self.vf2Val = String(finalDoubleValue)
+                    case 5:
+                        doubleValue *= ratioFactorSquared
+                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        self.aVal = String(finalDoubleValue)
+                    case 6:
+                        doubleValue *= hourSecondFactor
+                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        self.tVal = String(finalDoubleValue)
+                    case 7:
+                        doubleValue *= hourSecondFactor
+                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        self.t2Val = String(finalDoubleValue)
+                    default:
+                        return
+                    }
+                }
+            }
         }
         self.units = .SI
         self.updateTextFieldValues()
     }
+    //switch to feet, seconds
     func switchToEngUnits1(){
         self.units = .Eng1
     }
+    //switch to miles, hours
     func switchToEngUnits2(){
         self.units = .Eng2
     }
