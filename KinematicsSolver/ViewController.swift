@@ -226,14 +226,15 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
             //feet to meters
             let feetMeterFactor = 0.3048
             let valsArray = [xVal, viVal, vi2Val, vfVal, vf2Val, aVal] //the values affected by this conversion
-            for stringValue in valsArray{
+            for i in 0..<valsArray.count{
+                let stringValue = valsArray[i]
                 //if value isn't blank, convert and fill in
                 if stringValue != ""{
                     var doubleValue = Double(stringValue)!
                     doubleValue *= feetMeterFactor
-                    let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                    let finalDoubleValue = self.roundToSixPlaces(doubleValue)
                     let finalDoubleString = String(finalDoubleValue)
-                    let index = valsArray.indexOf(stringValue)!
+                    let index = i
                     
                     switch index{
                     case 0:
@@ -268,42 +269,43 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
             let ratioFactorSquared = mileMeterFactor / (hourSecondFactor * hourSecondFactor)
             
             let valsArray = [xVal, viVal, vi2Val, vfVal, vf2Val, aVal, tVal, t2Val]
-            for stringValue in valsArray{
+            for i in 0..<valsArray.count{
+                let stringValue = valsArray[i]
                 if stringValue != ""{
                     var doubleValue = Double(stringValue)!
-                    let index = valsArray.indexOf(stringValue)!
+                    let index = i
                     switch index{
                     case 0:
                         doubleValue *= mileMeterFactor
-                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
                         self.xVal = String(finalDoubleValue)
                     case 1:
                         doubleValue *= ratioFactor
-                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
                         self.viVal = String(finalDoubleValue)
                     case 2:
                         doubleValue *= ratioFactor
-                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
                         self.vi2Val = String(finalDoubleValue)
                     case 3:
                         doubleValue *= ratioFactor
-                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
                         self.vfVal = String(finalDoubleValue)
                     case 4:
                         doubleValue *= ratioFactor
-                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
                         self.vf2Val = String(finalDoubleValue)
                     case 5:
                         doubleValue *= ratioFactorSquared
-                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
                         self.aVal = String(finalDoubleValue)
                     case 6:
                         doubleValue *= hourSecondFactor
-                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
                         self.tVal = String(finalDoubleValue)
                     case 7:
                         doubleValue *= hourSecondFactor
-                        let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
                         self.t2Val = String(finalDoubleValue)
                     default:
                         return
@@ -316,11 +318,224 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     }
     //switch to feet, seconds
     func switchToEngUnits1(){
+        let currentUnits = self.units
+        
+        if currentUnits == .SI{
+            //meters to feet
+            let meterFeetFactor = 3.28083
+            let valsArray = [xVal, viVal, vi2Val, vfVal, vf2Val, aVal] //the values affected by this conversion
+            for i in 0..<valsArray.count{
+                let stringValue = valsArray[i]
+                //if value isn't blank, convert and fill in
+                if stringValue != ""{
+                    var doubleValue = Double(stringValue)!
+                    doubleValue *= meterFeetFactor
+                    let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                    let finalDoubleString = String(finalDoubleValue)
+                    let index = i
+                    
+                    switch index{
+                    case 0:
+                        self.xVal = finalDoubleString
+                    case 1:
+                        self.viVal = finalDoubleString
+                    case 2:
+                        self.vi2Val = finalDoubleString
+                    case 3:
+                        self.vfVal = finalDoubleString
+                    case 4:
+                        self.vf2Val = finalDoubleString
+                    case 5:
+                        self.aVal = finalDoubleString
+                    default:
+                        return
+                    }
+                }
+            }
+        }
+        else if currentUnits == .Eng1{
+            return
+        }
+        else if currentUnits == .Eng2{
+            //miles to feet
+            let mileFeetFactor = 5280.0
+            //hours to seconds
+            let hourSecondFactor = 3600.0
+            //mi/hr to ft/sec
+            let ratioFactor = mileFeetFactor / hourSecondFactor
+            //mi/h^2 to ft/sec^2
+            let ratioFactorSquared = mileFeetFactor / (hourSecondFactor * hourSecondFactor)
+            
+            let valsArray = [xVal, viVal, vi2Val, vfVal, vf2Val, aVal, tVal, t2Val]
+            for i in 0..<valsArray.count{
+                let stringValue = valsArray[i]
+                if stringValue != ""{
+                    var doubleValue = Double(stringValue)!
+                    let index = i
+                    switch index{
+                    case 0:
+                        doubleValue *= mileFeetFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.xVal = String(finalDoubleValue)
+                    case 1:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.viVal = String(finalDoubleValue)
+                    case 2:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.vi2Val = String(finalDoubleValue)
+                    case 3:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.vfVal = String(finalDoubleValue)
+                    case 4:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.vf2Val = String(finalDoubleValue)
+                    case 5:
+                        doubleValue *= ratioFactorSquared
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.aVal = String(finalDoubleValue)
+                    case 6:
+                        doubleValue *= hourSecondFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.tVal = String(finalDoubleValue)
+                    case 7:
+                        doubleValue *= hourSecondFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.t2Val = String(finalDoubleValue)
+                    default:
+                        return
+                    }
+                }
+            }
+        }
+        
         self.units = .Eng1
+        self.updateTextFieldValues()
     }
     //switch to miles, hours
     func switchToEngUnits2(){
+        
+        let currentUnits = self.units
+        
+        if currentUnits == .SI{
+            //meters to miles
+            let meterMileFactor = 1/1609.344
+            //seconds to hours 
+            let secondHourFactor = 1/3600.0
+            //m/s to mi/hr
+            let ratioFactor = meterMileFactor / secondHourFactor
+            //m/s^2 to mi/hr^2
+            let ratioFactorSquared = meterMileFactor / (secondHourFactor*secondHourFactor)
+            
+            let valsArray = [xVal, viVal, vi2Val, vfVal, vf2Val, aVal, tVal, t2Val]
+            for i in 0..<valsArray.count{
+                let stringValue = valsArray[i]
+                if stringValue != ""{
+                    var doubleValue = Double(stringValue)!
+                    let index = i
+                    switch index{
+                    case 0:
+                        doubleValue *= meterMileFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.xVal = String(finalDoubleValue)
+                    case 1:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.viVal = String(finalDoubleValue)
+                    case 2:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.vi2Val = String(finalDoubleValue)
+                    case 3:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.vfVal = String(finalDoubleValue)
+                    case 4:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.vf2Val = String(finalDoubleValue)
+                    case 5:
+                        doubleValue *= ratioFactorSquared
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.aVal = String(finalDoubleValue)
+                    case 6:
+                        doubleValue *= secondHourFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.tVal = String(finalDoubleValue)
+                    case 7:
+                        doubleValue *= secondHourFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.t2Val = String(finalDoubleValue)
+                    default:
+                        return
+                    }
+                }
+            }
+        }
+        else if currentUnits == .Eng1{
+            //feet to miles
+            let feetMileFactor = 1/5280.0
+            //seconds to hours
+            let secondHourFactor = 1/3600.0
+            //m/s to mi/hr
+            let ratioFactor = feetMileFactor / secondHourFactor
+            //m/s^2 to mi/hr^2
+            let ratioFactorSquared = feetMileFactor / (secondHourFactor*secondHourFactor)
+            
+            let valsArray = [xVal, viVal, vi2Val, vfVal, vf2Val, aVal, tVal, t2Val]
+            for i in 0..<valsArray.count{
+                let stringValue = valsArray[i]
+                if stringValue != ""{
+                    var doubleValue = Double(stringValue)!
+                    let index = i
+                    switch index{
+                    case 0:
+                        doubleValue *= feetMileFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.xVal = String(finalDoubleValue)
+                    case 1:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.viVal = String(finalDoubleValue)
+                    case 2:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.vi2Val = String(finalDoubleValue)
+                    case 3:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.vfVal = String(finalDoubleValue)
+                    case 4:
+                        doubleValue *= ratioFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.vf2Val = String(finalDoubleValue)
+                    case 5:
+                        doubleValue *= ratioFactorSquared
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.aVal = String(finalDoubleValue)
+                    case 6:
+                        doubleValue *= secondHourFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.tVal = String(finalDoubleValue)
+                    case 7:
+                        doubleValue *= secondHourFactor
+                        let finalDoubleValue = self.roundToSixPlaces(doubleValue)
+                        self.t2Val = String(finalDoubleValue)
+                    default:
+                        return
+                    }
+                }
+            }
+        }
+        else if currentUnits == .Eng2{
+            return
+        }
+        
         self.units = .Eng2
+        self.updateTextFieldValues()
     }
     
     //MARK: Help
@@ -405,43 +620,43 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         tTextField.clearButtonMode = .Never
         
         if valuesDict["x"] != nil{
-            let x = roundToThreePlaces(valuesDict["x"]!)
+            let x = roundToSixPlaces(valuesDict["x"]!)
             xVal = String(x)
         }
         if valuesDict["vi"] != nil{
-            let vi = roundToThreePlaces(valuesDict["vi"]!)
+            let vi = roundToSixPlaces(valuesDict["vi"]!)
             viVal = String(vi)
             if valuesDict["vi2"] != nil{
-                let vi2 = roundToThreePlaces(valuesDict["vi2"]!)
+                let vi2 = roundToSixPlaces(valuesDict["vi2"]!)
                 vi2Val = String(vi2)
             }
         }
         if valuesDict["vf"] != nil{
-            let vf = roundToThreePlaces(valuesDict["vf"]!)
+            let vf = roundToSixPlaces(valuesDict["vf"]!)
             vfVal = String(vf)
             if valuesDict["vf2"] != nil{
-                let vf2 = roundToThreePlaces(valuesDict["vf2"]!)
+                let vf2 = roundToSixPlaces(valuesDict["vf2"]!)
                 vf2Val = String(vf2)
             }
         }
         if valuesDict["a"] != nil{
-            let a = roundToThreePlaces(valuesDict["a"]!)
+            let a = roundToSixPlaces(valuesDict["a"]!)
             aVal = String(a)
         }
         if valuesDict["t"] != nil{
-            let t = roundToThreePlaces(valuesDict["t"]!)
+            let t = roundToSixPlaces(valuesDict["t"]!)
             tVal = String(t)
             if valuesDict["t2"] != nil{
-                let t2 = roundToThreePlaces(valuesDict["t2"]!)
+                let t2 = roundToSixPlaces(valuesDict["t2"]!)
                 t2Val = String(t2)
             }
         }
         
         self.updateTextFieldValues()
     }
-    //helper function to round to three places
-    func roundToThreePlaces(num: Double) -> Double{
-        return Double(round(1000*num)/1000)
+    //helper function to round to six places
+    func roundToSixPlaces(num: Double) -> Double{
+        return Double(round(1000000*num)/1000000)
     }
     //when we've updated our values variables, this updates the text field values.  Also handle display of the "show full" buttons.
     func updateTextFieldValues(){
