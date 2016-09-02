@@ -21,6 +21,8 @@
 		358EE2031D777BC8001C188A /* EquationValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358EE2021D777BC8001C188A /* EquationValidator.swift */; };
 		35CD7E401D79F4A0003B0B86 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CD7E3E1D79F4A0003B0B86 /* HelpViewController.swift */; };
 		35CD7E411D79F4A0003B0B86 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35CD7E3F1D79F4A0003B0B86 /* HelpViewController.xib */; };
+		35CD7E441D7A0049003B0B86 /* ShowWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CD7E421D7A0049003B0B86 /* ShowWorkViewController.swift */; };
+		35CD7E451D7A0049003B0B86 /* ShowWorkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35CD7E431D7A0049003B0B86 /* ShowWorkViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		358EE2021D777BC8001C188A /* EquationValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquationValidator.swift; sourceTree = "<group>"; };
 		35CD7E3E1D79F4A0003B0B86 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		35CD7E3F1D79F4A0003B0B86 /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
+		35CD7E421D7A0049003B0B86 /* ShowWorkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowWorkViewController.swift; sourceTree = "<group>"; };
+		35CD7E431D7A0049003B0B86 /* ShowWorkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowWorkViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,8 @@
 				358EE1CD1D773E77001C188A /* ViewController.swift */,
 				35CD7E3E1D79F4A0003B0B86 /* HelpViewController.swift */,
 				35CD7E3F1D79F4A0003B0B86 /* HelpViewController.xib */,
+				35CD7E421D7A0049003B0B86 /* ShowWorkViewController.swift */,
+				35CD7E431D7A0049003B0B86 /* ShowWorkViewController.xib */,
 				358EE1FB1D775079001C188A /* Equations */,
 				358EE1CF1D773E77001C188A /* Main.storyboard */,
 				358EE1D21D773E77001C188A /* Assets.xcassets */,
@@ -258,6 +264,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35CD7E451D7A0049003B0B86 /* ShowWorkViewController.xib in Resources */,
 				358EE1D61D773E77001C188A /* LaunchScreen.storyboard in Resources */,
 				358EE1D31D773E77001C188A /* Assets.xcassets in Resources */,
 				358EE1D11D773E77001C188A /* Main.storyboard in Resources */,
@@ -290,6 +297,7 @@
 				358EE2011D7761E7001C188A /* EquationFour.swift in Sources */,
 				358EE2031D777BC8001C188A /* EquationValidator.swift in Sources */,
 				35CD7E401D79F4A0003B0B86 /* HelpViewController.swift in Sources */,
+				35CD7E441D7A0049003B0B86 /* ShowWorkViewController.swift in Sources */,
 				358EE1CE1D773E77001C188A /* ViewController.swift in Sources */,
 				358EE1CC1D773E77001C188A /* AppDelegate.swift in Sources */,
 				358EE1FA1D775073001C188A /* EquationOne.swift in Sources */,

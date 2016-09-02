@@ -178,6 +178,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     //MARK: Show work
     
     @IBAction func showWorkPressed(sender: AnyObject) {
+        let vc = ShowWorkViewController(nibName: "ShowWorkViewController", bundle: nil)
+        self.presentViewController(vc, animated: true, completion: nil)
     }
     
     //MARK: Change units
@@ -324,7 +326,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         
         if currentUnits == .SI{
             //meters to feet
-            let meterFeetFactor = 3.28083
+            let meterFeetFactor = 3.2808399
             let valsArray = [xVal, viVal, vi2Val, vfVal, vf2Val, aVal] //the values affected by this conversion
             for i in 0..<valsArray.count{
                 let stringValue = valsArray[i]
