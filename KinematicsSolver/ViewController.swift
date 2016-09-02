@@ -51,6 +51,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     
     //solve/reset state.  Default is false; have not yet solved
     var solved: Bool = false
+    var solutionValues: [String: Double] = [:] //when we've pressed solve, this dict holds the solution values
+    //TODO: Change solution values with unit changes!
     
     //show work button
     @IBOutlet weak var showWorkButton: UIButton!
@@ -159,6 +161,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
                     button.setTitle("Reset", forState: .Normal)
                     self.showWorkButton.hidden = false
                     let solutionValues = EquationValidator.solveForUnknowns(valuesDict)
+                    self.solutionValues = solutionValues
                     self.fillInValues(solutionValues)
                 }
             }
@@ -179,6 +182,40 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     
     @IBAction func showWorkPressed(sender: AnyObject) {
         let vc = ShowWorkViewController(nibName: "ShowWorkViewController", bundle: nil)
+        var equationIndices: [Int] = [] //array to encode which equations we used in solution
+        let varsArray = self.solutionValues.keys
+        
+        if varsArray.contains("a") && varsArray.contains("t"){
+            equationIndices = [12,16]
+        }
+        else if varsArray.contains("vf") && varsArray.contains("t"){
+            equationIndices = [11,4]
+        }
+        else if varsArray.contains("vf") && varsArray.contains("a"){
+            equationIndices = [15,3]
+        }
+        else if varsArray.contains("vi") && tVal == ""{
+            equationIndices = [10]
+        }
+        else if varsArray.contains("vi") && aVal == ""{
+            equationIndices = [14]
+        }
+        else if varsArray.contains("vi") && vfVal == ""{
+            equationIndices = [2]
+        }
+        else if varsArray.contains("x") && varsArray.contains("t"){
+            equationIndices = [9,8]
+        }
+        else if varsArray.contains("x") && varsArray.contains("a"){
+            equationIndices = [13,7]
+        }
+        else if varsArray.contains("x") && varsArray.contains("vf"){
+            equationIndices = [1,6]
+        }
+        else{ //contains vi, xVal = ""
+            equationIndices = [5]
+        }
+        vc.equationIndices = equationIndices
         self.presentViewController(vc, animated: true, completion: nil)
     }
     
@@ -744,6 +781,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         showFullVf.hidden = true
         showFullA.hidden = true
         showFullT.hidden = true
+        
+        //clear solution values
+        self.solutionValues = [:]
     }
     
 }
