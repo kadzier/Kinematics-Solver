@@ -53,6 +53,10 @@ class ShowWorkViewController: UIViewController {
     func displaySolutionLabels(){
         
         //one-half in unicode: \u{00B9}\u{2044}\u{2082}
+        //squared in unicode: \u{00B2}
+        //fraction sign in unicode: \u{2044}
+        //square root sign unicode: \u{221A}
+        //plus or minus unicode: \u{207A}\u{2044}-
         
         //first equation
         //3, 4, 6, 7, 8, 16 cannot currently be the first equation (always paired second with something else when object is created)
@@ -68,6 +72,21 @@ class ShowWorkViewController: UIViewController {
             headerText += "x = Vi*t + \u{00B9}\u{2044}\u{2082}*a*t\u{00B2}"
             headerText += "\n Solving the equation for Vi, we end up with: \n"
             headerText += "Vi = x\u{2044}t - \u{00B9}\u{2044}\u{2082}*a*t"
+        case 5:
+            headerText = "We are given final velocity, acceleration, and time.  To solve for initial velocity, we start with the equation: \n"
+            headerText += "Vf = Vi + a*t \n"
+            headerText += "Solving the equation for Vi, we end up with: \n"
+            headerText += "Vi = Vf - a*t"
+        case 9:
+            headerText = "We are given the initial velocity, final velocity, and acceleration.  To solve for displacement, we start with the equation: \n"
+            headerText += "Vf\u{00B2} = Vi\u{00B2} + 2*a*x \n"
+            headerText += "Solving the equation for x, we end up with: \n"
+            headerText += "x = (Vf\u{00B2} - Vi\u{00B2}) \u{2044} (2a)"
+        case 10:
+            headerText = "We are given the displacement, final velocity, and acceleration.  To solve for initial velocity, we start with the equation: \n"
+            headerText += "Vf\u{00B2} = Vi\u{00B2} + 2*a*x \n"
+            headerText += "Solving the equation for Vi, we end up with: \n"
+            headerText += "Vi = \u{207A}\u{2044}- \u{221A}[Vf\u{00B2} - 2*a*x]"
         default:
             return
         }
