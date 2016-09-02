@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum Units{
+    case SI
+    case Eng1
+    case Eng2
+}
+
 class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextFieldDelegate {
     @IBOutlet weak var displacementLabel: UILabel!
     @IBOutlet weak var initVelLabel: UILabel!
@@ -26,16 +32,22 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     @IBOutlet weak var showFullVf: UIButton!
     @IBOutlet weak var showFullA: UIButton!
     @IBOutlet weak var showFullT: UIButton!
-        
+    
+    //defaut to SI units
+    var units: Units = .SI
     
     let maxChars = 16 //"cutoff" point for chars in text field
+    
     
     //textual representation of the entered values- empty string if empty 
     var xVal = ""
     var viVal = ""
+    var vi2Val = ""
     var vfVal = ""
+    var vf2Val = ""
     var aVal = ""
     var tVal = ""
+    var t2Val = ""
     
     //solve/reset state.  Default is false; have not yet solved
     var solved: Bool = false
@@ -175,6 +187,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
             self.finalVelLabel.text = "Final Velocity (m/s)"
             self.accelLabel.text = "Acceleration (m/s\u{00B2})"
             self.timeLabel.text = "Time (s)"
+            
+            self.switchToSIUnits()
         }
         let eng1Action = UIAlertAction(title: "English (feet, seconds)", style: .Default) { (action) in
             self.displacementLabel.text = "Displacement (ft)"
@@ -182,6 +196,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
             self.finalVelLabel.text = "Final Velocity (ft/s)"
             self.accelLabel.text = "Acceleration (ft/s\u{00B2})"
             self.timeLabel.text = "Time (s)"
+            
+            self.switchToEngUnits1()
         }
         let eng2Action = UIAlertAction(title: "English (miles, hours)", style: .Default) { (action) in
             self.displacementLabel.text = "Displacement (mi)"
@@ -189,6 +205,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
             self.finalVelLabel.text = "Final Velocity (mi/hr)"
             self.accelLabel.text = "Acceleration (mi/hr\u{00B2})"
             self.timeLabel.text = "Time (hr)"
+            
+            self.switchToEngUnits2()
         }
         alertController.addAction(siAction)
         alertController.addAction(eng1Action)
@@ -196,6 +214,61 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+    func switchToSIUnits(){
+        let currentUnits = self.units
+        //if already SI, do nothing
+        if currentUnits == .SI{
+            return
+        }
+        //eng1 to SI
+        else if currentUnits == .Eng1{
+            //feet to meters
+            let feetMeterFactor = 0.3048
+            let valsArray = [xVal, viVal, vi2Val, vfVal, vf2Val, aVal] //the values affected by this conversion
+            for stringValue in valsArray{
+                //if value isn't blank, convert and fill in
+                if stringValue != ""{
+                    var doubleValue = Double(stringValue)!
+                    doubleValue *= feetMeterFactor
+                    let finalDoubleValue = self.roundToThreePlaces(doubleValue)
+                    let finalDoubleString = String(finalDoubleValue)
+                    let index = valsArray.indexOf(stringValue)!
+                    
+                    switch index{
+                    case 0:
+                        self.xVal = finalDoubleString
+                    case 1:
+                        self.viVal = finalDoubleString
+                    case 2:
+                        self.vi2Val = finalDoubleString
+                    case 3:
+                        self.vfVal = finalDoubleString
+                    case 4:
+                        self.vf2Val = finalDoubleString
+                    case 5:
+                        self.aVal = finalDoubleString
+                    default:
+                        return
+                    }
+                }
+            }
+            
+            
+        }
+        //eng2 to SI
+        else if currentUnits == .Eng2{
+            
+        }
+        self.units = .SI
+        self.updateTextFieldValues()
+    }
+    func switchToEngUnits1(){
+        self.units = .Eng1
+    }
+    func switchToEngUnits2(){
+        self.units = .Eng2
+    }
+    
     //MARK: Help
     @IBAction func helpPressed(sender: AnyObject) {
     }
@@ -267,7 +340,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         tVal = sender.text!
     }
     
-    //when we've solved the equation, this fills in the text fields.  We also handle rounding here, as well as the "show full" buttons
+    //when we've solved the equation, this updates the values variables.  We also handle rounding here.
     func fillInValues(valuesDict: [String:Double]){
         
         //get rid of clear buttons
@@ -279,57 +352,75 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         
         if valuesDict["x"] != nil{
             let x = roundToThreePlaces(valuesDict["x"]!)
-            xTextField.text = String(x)
-            if xTextField.text?.characters.count > maxChars{
-                showFullX.hidden = false
-            }
+            xVal = String(x)
         }
         if valuesDict["vi"] != nil{
             let vi = roundToThreePlaces(valuesDict["vi"]!)
-            viTextField.text = String(vi)
+            viVal = String(vi)
             if valuesDict["vi2"] != nil{
                 let vi2 = roundToThreePlaces(valuesDict["vi2"]!)
-                viTextField.text = viTextField.text! + " or " + String(vi2)
-            }
-            if viTextField.text?.characters.count > maxChars{
-                showFullVi.hidden = false
+                vi2Val = String(vi2)
             }
         }
         if valuesDict["vf"] != nil{
             let vf = roundToThreePlaces(valuesDict["vf"]!)
-            vfTextField.text = String(vf)
+            vfVal = String(vf)
             if valuesDict["vf2"] != nil{
                 let vf2 = roundToThreePlaces(valuesDict["vf2"]!)
-                vfTextField.text = vfTextField.text! + " or " + String(vf2)
-            }
-            if vfTextField.text?.characters.count > maxChars{
-                showFullVf.hidden = false
+                vf2Val = String(vf2)
             }
         }
         if valuesDict["a"] != nil{
             let a = roundToThreePlaces(valuesDict["a"]!)
-            aTextField.text = String(a)
-            if aTextField.text?.characters.count > maxChars{
-                showFullA.hidden = false
-            }
+            aVal = String(a)
         }
         if valuesDict["t"] != nil{
             let t = roundToThreePlaces(valuesDict["t"]!)
-            tTextField.text = String(t)
+            tVal = String(t)
             if valuesDict["t2"] != nil{
                 let t2 = roundToThreePlaces(valuesDict["t2"]!)
-                tTextField.text = tTextField.text! + " or " + String(t2)
-            }
-            if tTextField.text?.characters.count > maxChars{
-                showFullT.hidden = false
+                t2Val = String(t2)
             }
         }
+        
+        self.updateTextFieldValues()
     }
     //helper function to round to three places
     func roundToThreePlaces(num: Double) -> Double{
         return Double(round(1000*num)/1000)
     }
-    
+    //when we've updated our values variables, this updates the text field values.  Also handle display of the "show full" buttons.
+    func updateTextFieldValues(){
+        xTextField.text = xVal
+        if xTextField.text?.characters.count > maxChars{
+            showFullX.hidden = false
+        }
+        viTextField.text = viVal
+        if vi2Val != ""{
+            viTextField.text = viTextField.text! + " or " + vi2Val
+        }
+        if viTextField.text?.characters.count > maxChars{
+            showFullVi.hidden = false
+        }
+        vfTextField.text = vfVal
+        if vf2Val != ""{
+            vfTextField.text = vfTextField.text! + " or " + vf2Val
+        }
+        if vfTextField.text?.characters.count > maxChars{
+            showFullVf.hidden = false
+        }
+        aTextField.text = aVal
+        if aTextField.text?.characters.count > maxChars{
+            showFullA.hidden = false
+        }
+        tTextField.text = tVal
+        if t2Val != ""{
+            tTextField.text = tTextField.text! + " or " + t2Val
+        }
+        if tTextField.text?.characters.count > maxChars{
+            showFullT.hidden = false
+        }
+    }
     //showing full values
     @IBAction func showFullXPressed(sender: AnyObject) {
         self.presentAlertWithMessage(title: "Displacement", message: xTextField.text!)
@@ -352,9 +443,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     func resetValues(){
         xVal = ""
         viVal = ""
+        vi2Val = ""
         vfVal = ""
+        vf2Val = ""
         aVal = ""
         tVal = ""
+        t2Val = ""
         
         xTextField.text = ""
         viTextField.text = ""
