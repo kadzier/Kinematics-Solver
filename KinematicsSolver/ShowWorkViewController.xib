@@ -26,16 +26,16 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shY-Fb-wRw">
-                    <rect key="frame" x="9" y="36" width="303" height="82"/>
+                    <rect key="frame" x="9" y="60" width="302" height="120"/>
                     <string key="text">We are given acceleration, initial velocity, and time.  To solve for displacement, we can use the equation: x = vi*t + 0.5*a*t^2</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pwa-1v-lun">
-                    <rect key="frame" x="8" y="203" width="303" height="82"/>
+                    <rect key="frame" x="9" y="265" width="302" height="120"/>
                     <string key="text">We are given acceleration, initial velocity, and time.  To solve for displacement, we can use the equation: x = vi*t + 0.5*a*t^2</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -48,7 +48,7 @@
                 <constraint firstItem="Pwa-1v-lun" firstAttribute="top" secondItem="shY-Fb-wRw" secondAttribute="bottom" constant="85" id="9DJ-1P-NVV"/>
                 <constraint firstItem="shY-Fb-wRw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ep7-OS-PVX"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="shY-Fb-wRw" secondAttribute="trailing" constant="8" id="hxz-e9-cQc"/>
-                <constraint firstItem="shY-Fb-wRw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="36" id="kBx-nn-9fx"/>
+                <constraint firstItem="shY-Fb-wRw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="kBx-nn-9fx"/>
                 <constraint firstAttribute="bottom" secondItem="St7-UR-Uu5" secondAttribute="bottom" constant="54" id="p1c-6f-iAg"/>
             </constraints>
             <point key="canvasLocation" x="525" y="585"/>
