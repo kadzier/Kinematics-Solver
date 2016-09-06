@@ -216,6 +216,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
             equationIndices = [5]
         }
         vc.equationIndices = equationIndices
+        vc.mainController = self
+        
         self.presentViewController(vc, animated: true, completion: nil)
     }
     

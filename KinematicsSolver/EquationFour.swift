@@ -36,6 +36,7 @@ class EquationFour: NSObject {
             if !variableSet.contains("x"){ //we're solving for x
                 x = ((vi! + vf!)*t!) / 2
             }
+            //equation validator takes care of undefined stuff
             else if !variableSet.contains("vi"){ //we're solving for vi
                 vi = (2*x!)/t! - vf!
             }
