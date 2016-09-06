@@ -25,15 +25,15 @@
                         <action selector="donePressed:" destination="-1" eventType="touchUpInside" id="yzC-2S-x2x"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shY-Fb-wRw">
-                    <rect key="frame" x="9" y="60" width="302" height="120"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="shY-Fb-wRw">
+                    <rect key="frame" x="9" y="50" width="302" height="120"/>
                     <string key="text">We are given acceleration, initial velocity, and time.  To solve for displacement, we can use the equation: x = vi*t + 0.5*a*t^2</string>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pwa-1v-lun">
-                    <rect key="frame" x="9" y="265" width="302" height="120"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="Pwa-1v-lun">
+                    <rect key="frame" x="9" y="180" width="302" height="120"/>
                     <string key="text">We are given acceleration, initial velocity, and time.  To solve for displacement, we can use the equation: x = vi*t + 0.5*a*t^2</string>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,13 +42,15 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="St7-UR-Uu5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Pwa-1v-lun" secondAttribute="bottom" constant="5" id="1bN-cw-omZ"/>
                 <constraint firstItem="St7-UR-Uu5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2Kx-V1-Xjs"/>
                 <constraint firstItem="Pwa-1v-lun" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="5FC-ks-Zhb"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Pwa-1v-lun" secondAttribute="trailing" constant="9" id="8GL-dz-Vzh"/>
-                <constraint firstItem="Pwa-1v-lun" firstAttribute="top" secondItem="shY-Fb-wRw" secondAttribute="bottom" constant="85" id="9DJ-1P-NVV"/>
+                <constraint firstItem="Pwa-1v-lun" firstAttribute="top" secondItem="shY-Fb-wRw" secondAttribute="bottom" constant="10" id="9DJ-1P-NVV"/>
                 <constraint firstItem="shY-Fb-wRw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ep7-OS-PVX"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="shY-Fb-wRw" secondAttribute="trailing" constant="8" id="hxz-e9-cQc"/>
-                <constraint firstItem="shY-Fb-wRw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="kBx-nn-9fx"/>
+                <constraint firstItem="shY-Fb-wRw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="kBx-nn-9fx"/>
+                <constraint firstItem="Pwa-1v-lun" firstAttribute="height" secondItem="shY-Fb-wRw" secondAttribute="height" id="mAp-qD-1uq"/>
                 <constraint firstAttribute="bottom" secondItem="St7-UR-Uu5" secondAttribute="bottom" constant="54" id="p1c-6f-iAg"/>
             </constraints>
             <point key="canvasLocation" x="525" y="585"/>
