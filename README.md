@@ -1,1 +1,1 @@
-readme
+This is the source code for a small iPhone App I made to solve problems in 1D Kinematics (motion in one direction with constant acceleration).  It could be very useful for intro high school physics homework.  
