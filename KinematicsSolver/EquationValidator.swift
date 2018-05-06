@@ -11,7 +11,7 @@ import UIKit
 //Extension for Set that adds the capability to test membership for an array of strings 
 //Input is an array of Strings.  Returns true iff ALL strings in input are in set.
 extension Set{
-    func containsStrings(array: [String]) -> Bool{
+    func containsStrings(_ array: [String]) -> Bool{
         for item in array{
             if !self.contains(item as! Element){
                 return false
@@ -26,7 +26,7 @@ class EquationValidator: NSObject {
 
     //either returns "valid" if equation can be solved, or the specific error message if not
     //precondition: dict has EXACTLY three unique keys, taken from the strings x, vi, vf, a, or t
-    class func validateEquation(dict: [String:Double]) -> String{
+    class func validateEquation(_ dict: [String:Double]) -> String{
         let keys = dict.keys
         let variableSet = Set(keys)
         
@@ -142,7 +142,7 @@ class EquationValidator: NSObject {
     //Use the equation classes to solve for the unknowns 
     //Input is a dictionary with exactly three key/value pairs where the keys are unique strings x, vi, vf, a, or t
     //Output is another dictionary with key/value pairs for the remaining variables; the answers might have the keys vi2, vf2 or t2 for situations with multiple roots
-    class func solveForUnknowns(varsDict: [String:Double]) -> [String: Double] {
+    class func solveForUnknowns(_ varsDict: [String:Double]) -> [String: Double] {
         
         let variables = varsDict.keys
         let variableSet = Set(variables)

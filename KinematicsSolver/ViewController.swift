@@ -7,11 +7,35 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 enum Units{
-    case SI //meters, seconds
-    case Eng1 //feet, seconds
-    case Eng2 //miles, hours
+    case si //meters, seconds
+    case eng1 //feet, seconds
+    case eng2 //miles, hours
 }
 
 class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextFieldDelegate {
@@ -34,7 +58,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     @IBOutlet weak var showFullT: UIButton!
     
     //defaut to SI units
-    var units: Units = .SI
+    var units: Units = .si
     
     let maxChars = 18 //"cutoff" point for chars in text field
     
@@ -64,12 +88,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         //gradient background
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
-        let color0 = UIColor.whiteColor().CGColor as CGColorRef
-        let color1 = UIColor.groupTableViewBackgroundColor().CGColor as CGColorRef
-        let color2 = UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor as CGColorRef
+        let color0 = UIColor.white.cgColor as CGColor
+        let color1 = UIColor.groupTableViewBackground.cgColor as CGColor
+        let color2 = UIColor.lightGray.withAlphaComponent(0.5).cgColor as CGColor
         gradientLayer.colors = [color0, color1, color2]
         gradientLayer.locations = nil //spread evenly
-        self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
         
         //superscript on acceleration
         self.accelLabel.text = "Acceleration (m/s\u{00B2})"
@@ -87,17 +111,17 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         tTextField.delegate = self
         
         //show full buttons
-        self.showFullX.hidden = true
-        self.showFullVi.hidden = true
-        self.showFullVf.hidden = true
-        self.showFullA.hidden = true
-        self.showFullT.hidden = true
+        self.showFullX.isHidden = true
+        self.showFullVi.isHidden = true
+        self.showFullVf.isHidden = true
+        self.showFullA.isHidden = true
+        self.showFullT.isHidden = true
         
         //show work button
-        self.showWorkButton.hidden = true
+        self.showWorkButton.isHidden = true
         
         //style of transitioning modally to self
-        self.modalTransitionStyle = .FlipHorizontal
+        self.modalTransitionStyle = .flipHorizontal
     }
 
     override func didReceiveMemoryWarning() {
@@ -109,17 +133,17 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     }
     
     //MARK: Present alert controller with message
-    func presentAlertWithMessage(title title: String, message: String){
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { (action) in
+    func presentAlertWithMessage(title: String, message: String){
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
             
         }))
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     //MARK: Solve/Reset
     
-    @IBAction func solveResetPressed(sender: AnyObject) {
+    @IBAction func solveResetPressed(_ sender: AnyObject) {
         
         let button = sender as! UIButton
         
@@ -158,8 +182,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
                 }
                 else{ //we have a valid solution! Time to solve
                     solved = true
-                    button.setTitle("Reset", forState: .Normal)
-                    self.showWorkButton.hidden = false
+                    button.setTitle("Reset", for: UIControlState())
+                    self.showWorkButton.isHidden = false
                     let solutionValues = EquationValidator.solveForUnknowns(valuesDict)
                     self.solutionValues = solutionValues
                     self.fillInValues(solutionValues)
@@ -172,15 +196,15 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         //need to reset
         else{
             solved = false
-            button.setTitle("Solve!", forState: .Normal)
-            self.showWorkButton.hidden = true
+            button.setTitle("Solve!", for: UIControlState())
+            self.showWorkButton.isHidden = true
             self.resetValues()
         }
     }
 
     //MARK: Show work
     
-    @IBAction func showWorkPressed(sender: AnyObject) {
+    @IBAction func showWorkPressed(_ sender: AnyObject) {
         let vc = ShowWorkViewController(nibName: "ShowWorkViewController", bundle: nil)
         var equationIndices: [Int] = [] //array to encode which equations we used in solution
         let varsArray = self.solutionValues.keys
@@ -218,13 +242,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         vc.equationIndices = equationIndices
         vc.mainController = self
         
-        self.presentViewController(vc, animated: true, completion: nil)
+        self.present(vc, animated: true, completion: nil)
     }
     
     //MARK: Change units
-    @IBAction func changeUnitsPressed(sender: AnyObject) {
-        let alertController = UIAlertController(title: nil, message: "Choose Units", preferredStyle: .ActionSheet)
-        let siAction = UIAlertAction(title: "SI (meters, seconds)", style: .Default) { (action) in
+    @IBAction func changeUnitsPressed(_ sender: AnyObject) {
+        let alertController = UIAlertController(title: nil, message: "Choose Units", preferredStyle: .actionSheet)
+        let siAction = UIAlertAction(title: "SI (meters, seconds)", style: .default) { (action) in
             self.displacementLabel.text = "Displacement (m)"
             self.initVelLabel.text = "Initial Velocity (m/s)"
             self.finalVelLabel.text = "Final Velocity (m/s)"
@@ -233,7 +257,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
             
             self.switchToSIUnits()
         }
-        let eng1Action = UIAlertAction(title: "English (feet, seconds)", style: .Default) { (action) in
+        let eng1Action = UIAlertAction(title: "English (feet, seconds)", style: .default) { (action) in
             self.displacementLabel.text = "Displacement (ft)"
             self.initVelLabel.text = "Initial Velocity (ft/s)"
             self.finalVelLabel.text = "Final Velocity (ft/s)"
@@ -242,7 +266,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
             
             self.switchToEngUnits1()
         }
-        let eng2Action = UIAlertAction(title: "English (miles, hours)", style: .Default) { (action) in
+        let eng2Action = UIAlertAction(title: "English (miles, hours)", style: .default) { (action) in
             self.displacementLabel.text = "Displacement (mi)"
             self.initVelLabel.text = "Initial Velocity (mi/hr)"
             self.finalVelLabel.text = "Final Velocity (mi/hr)"
@@ -255,17 +279,17 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         alertController.addAction(eng1Action)
         alertController.addAction(eng2Action)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     //switch to meters, seconds
     func switchToSIUnits(){
         let currentUnits = self.units
         //if already SI, do nothing
-        if currentUnits == .SI{
+        if currentUnits == .si{
             return
         }
         //eng1 to SI
-        else if currentUnits == .Eng1{
+        else if currentUnits == .eng1{
             //feet to meters
             let feetMeterFactor = 0.3048
             let valsArray = [xVal, viVal, vi2Val, vfVal, vf2Val, aVal] //the values affected by this conversion
@@ -301,7 +325,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
             
         }
         //eng2 to SI
-        else if currentUnits == .Eng2{
+        else if currentUnits == .eng2{
             //miles to meters
             let mileMeterFactor = 1609.344
             //hours to seconds
@@ -356,14 +380,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
                 }
             }
         }
-        self.units = .SI
+        self.units = .si
         self.updateTextFieldValues()
     }
     //switch to feet, seconds
     func switchToEngUnits1(){
         let currentUnits = self.units
         
-        if currentUnits == .SI{
+        if currentUnits == .si{
             //meters to feet
             let meterFeetFactor = 3.2808399
             let valsArray = [xVal, viVal, vi2Val, vfVal, vf2Val, aVal] //the values affected by this conversion
@@ -396,10 +420,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
                 }
             }
         }
-        else if currentUnits == .Eng1{
+        else if currentUnits == .eng1{
             return
         }
-        else if currentUnits == .Eng2{
+        else if currentUnits == .eng2{
             //miles to feet
             let mileFeetFactor = 5280.0
             //hours to seconds
@@ -455,7 +479,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
             }
         }
         
-        self.units = .Eng1
+        self.units = .eng1
         self.updateTextFieldValues()
     }
     //switch to miles, hours
@@ -463,7 +487,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         
         let currentUnits = self.units
         
-        if currentUnits == .SI{
+        if currentUnits == .si{
             //meters to miles
             let meterMileFactor = 1/1609.344
             //seconds to hours 
@@ -518,7 +542,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
                 }
             }
         }
-        else if currentUnits == .Eng1{
+        else if currentUnits == .eng1{
             //feet to miles
             let feetMileFactor = 1/5280.0
             //seconds to hours
@@ -573,25 +597,25 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
                 }
             }
         }
-        else if currentUnits == .Eng2{
+        else if currentUnits == .eng2{
             return
         }
         
-        self.units = .Eng2
+        self.units = .eng2
         self.updateTextFieldValues()
     }
     
     //MARK: Help
-    @IBAction func helpPressed(sender: AnyObject) {
+    @IBAction func helpPressed(_ sender: AnyObject) {
         let vc = HelpViewController(nibName: "HelpViewController", bundle: nil)
-        self.presentViewController(vc, animated: true, completion: nil)
+        self.present(vc, animated: true, completion: nil)
     }
     
     
     //MARK: Text field delegate
     //we want to disable editing if we're in the "reset" state
     //we want to disable editing if 3 fields are already filled and we're trying to edit the fourth and beyond
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
         if solved == true{
             return false
@@ -619,7 +643,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     }
 
     //set the entered values in the text field
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == xTextField{
             xVal = textField.text!
         }
@@ -638,31 +662,31 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
     }
     
     //callbacks for when the text in the text field changes while editing
-    @IBAction func xTextChanged(sender: UITextField) {
+    @IBAction func xTextChanged(_ sender: UITextField) {
         xVal = sender.text!
     }
-    @IBAction func viTextChanged(sender: UITextField) {
+    @IBAction func viTextChanged(_ sender: UITextField) {
         viVal = sender.text!
     }
-    @IBAction func vfTextChanged(sender: UITextField) {
+    @IBAction func vfTextChanged(_ sender: UITextField) {
         vfVal = sender.text!
     }
-    @IBAction func aTextChanged(sender: UITextField) {
+    @IBAction func aTextChanged(_ sender: UITextField) {
         aVal = sender.text!
     }
-    @IBAction func tTextChanged(sender: UITextField) {
+    @IBAction func tTextChanged(_ sender: UITextField) {
         tVal = sender.text!
     }
     
     //when we've solved the equation, this updates the values variables.  We also handle rounding here.
-    func fillInValues(valuesDict: [String:Double]){
+    func fillInValues(_ valuesDict: [String:Double]){
         
         //get rid of clear buttons
-        xTextField.clearButtonMode = .Never
-        viTextField.clearButtonMode = .Never
-        vfTextField.clearButtonMode = .Never
-        aTextField.clearButtonMode = .Never
-        tTextField.clearButtonMode = .Never
+        xTextField.clearButtonMode = .never
+        viTextField.clearButtonMode = .never
+        vfTextField.clearButtonMode = .never
+        aTextField.clearButtonMode = .never
+        tTextField.clearButtonMode = .never
         
         if valuesDict["x"] != nil{
             let x = roundToSixPlaces(valuesDict["x"]!)
@@ -700,55 +724,55 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         self.updateTextFieldValues()
     }
     //helper function to round to six places
-    func roundToSixPlaces(num: Double) -> Double{
+    func roundToSixPlaces(_ num: Double) -> Double{
         return Double(round(1000000*num)/1000000)
     }
     //when we've updated our values variables, this updates the text field values.  Also handle display of the "show full" buttons.
     func updateTextFieldValues(){
         xTextField.text = xVal
         if xTextField.text?.characters.count > maxChars{
-            showFullX.hidden = false
+            showFullX.isHidden = false
         }
         viTextField.text = viVal
         if vi2Val != ""{
             viTextField.text = viTextField.text! + " or " + vi2Val
         }
         if viTextField.text?.characters.count > maxChars{
-            showFullVi.hidden = false
+            showFullVi.isHidden = false
         }
         vfTextField.text = vfVal
         if vf2Val != ""{
             vfTextField.text = vfTextField.text! + " or " + vf2Val
         }
         if vfTextField.text?.characters.count > maxChars{
-            showFullVf.hidden = false
+            showFullVf.isHidden = false
         }
         aTextField.text = aVal
         if aTextField.text?.characters.count > maxChars{
-            showFullA.hidden = false
+            showFullA.isHidden = false
         }
         tTextField.text = tVal
         if t2Val != ""{
             tTextField.text = tTextField.text! + " or " + t2Val
         }
         if tTextField.text?.characters.count > maxChars{
-            showFullT.hidden = false
+            showFullT.isHidden = false
         }
     }
     //showing full values
-    @IBAction func showFullXPressed(sender: AnyObject) {
+    @IBAction func showFullXPressed(_ sender: AnyObject) {
         self.presentAlertWithMessage(title: "Displacement", message: xTextField.text!)
     }
-    @IBAction func showFullViPressed(sender: AnyObject) {
+    @IBAction func showFullViPressed(_ sender: AnyObject) {
         self.presentAlertWithMessage(title: "Initial Velocity", message: viTextField.text!)
     }
-    @IBAction func showFullVfPressed(sender: AnyObject) {
+    @IBAction func showFullVfPressed(_ sender: AnyObject) {
         self.presentAlertWithMessage(title: "Final Velocity", message: vfTextField.text!)
     }
-    @IBAction func showFullAPressed(sender: AnyObject) {
+    @IBAction func showFullAPressed(_ sender: AnyObject) {
         self.presentAlertWithMessage(title: "Acceleration", message: aTextField.text!)
     }
-    @IBAction func showFullTPressed(sender: AnyObject) {
+    @IBAction func showFullTPressed(_ sender: AnyObject) {
         self.presentAlertWithMessage(title: "Time", message: tTextField.text!)
     }
     
@@ -771,18 +795,18 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, UITextField
         tTextField.text = ""
         
         //restore clear buttons
-        xTextField.clearButtonMode = .Always
-        viTextField.clearButtonMode = .Always
-        vfTextField.clearButtonMode = .Always
-        aTextField.clearButtonMode = .Always
-        tTextField.clearButtonMode = .Always
+        xTextField.clearButtonMode = .always
+        viTextField.clearButtonMode = .always
+        vfTextField.clearButtonMode = .always
+        aTextField.clearButtonMode = .always
+        tTextField.clearButtonMode = .always
         
         //get rid of show full buttons
-        showFullX.hidden = true
-        showFullVi.hidden = true
-        showFullVf.hidden = true
-        showFullA.hidden = true
-        showFullT.hidden = true
+        showFullX.isHidden = true
+        showFullVi.isHidden = true
+        showFullVf.isHidden = true
+        showFullA.isHidden = true
+        showFullT.isHidden = true
         
         //clear solution values
         self.solutionValues = [:]

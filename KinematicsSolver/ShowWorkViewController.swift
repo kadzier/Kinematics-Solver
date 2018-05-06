@@ -48,18 +48,18 @@ class ShowWorkViewController: UIViewController {
         
         //gradient background
         let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = UIScreen.mainScreen().bounds
-        let color0 = UIColor.whiteColor().CGColor as CGColorRef
-        let color1 = UIColor(red: 240/255.0, green: 255/255.0, blue: 237/255.0, alpha: 0.7).CGColor as CGColorRef
-        let color2 = UIColor(red: 216/255.0, green: 255/255.0, blue: 209/255.0, alpha: 0.5).CGColor as CGColorRef
+        gradientLayer.frame = UIScreen.main.bounds
+        let color0 = UIColor.white.cgColor as CGColor
+        let color1 = UIColor(red: 240/255.0, green: 255/255.0, blue: 237/255.0, alpha: 0.7).cgColor as CGColor
+        let color2 = UIColor(red: 216/255.0, green: 255/255.0, blue: 209/255.0, alpha: 0.5).cgColor as CGColor
         gradientLayer.colors = [color0, color1, color2]
         gradientLayer.locations = nil //spread evenly
-        self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
         
-        self.modalTransitionStyle = .FlipHorizontal
+        self.modalTransitionStyle = .flipHorizontal
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.displaySolutionLabels()
     }
@@ -209,7 +209,7 @@ class ShowWorkViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-    @IBAction func donePressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func donePressed(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
